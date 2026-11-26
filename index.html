@@ -530,6 +530,85 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
   .n14d-h p{font-size:14px}
   .n14d .mdots{padding-inline:var(--pad);margin:12px 0 22px}
   }
+/* Телефонные варианты отзывов: rv-A колода, rv-B истории, rv-C по врачам, rv-D цитаты, rv-E лента. Десктоп не меняется */
+.n14m{display:none}
+@container mk (max-width:700px){
+  .n14d .n14d-marq{display:none}
+  .n14m{display:block;padding:0 var(--pad)}
+  .n14m>div{display:none}
+  html.rv-A .n14m-A,html.rv-B .n14m-B,html.rv-C .n14m-C,html.rv-D .n14m-D,html.rv-E .n14m-E,html:not([class*="rv-"]) .n14m-A{display:block}
+  .n14m em{font-style:normal;color:#8a6a3c}
+  .n14m .dk em,.n14m-D em{color:var(--glow)}
+  .n14m-av{flex:none;width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:50% 18%;background:var(--paper)}
+  .n14m-by{display:flex;align-items:center;gap:12px;min-width:0}
+  .n14m-by b{display:block;font:400 15px/1.2 var(--sans)}
+  .n14m-by small{display:block;margin-top:3px;font-size:12.5px;line-height:1.3;opacity:.72}
+  .n14m-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--tint);color:var(--ink);font:400 15px/1 var(--sans);border:0;cursor:pointer}
+
+  /* A: колода */
+  .rA-st{display:grid;padding-bottom:26px;touch-action:pan-y}
+  .rA-c{grid-area:1/1;display:flex;flex-direction:column;justify-content:space-between;gap:26px;min-height:min(100cqi,400px);padding:26px 22px 22px;border-radius:calc(var(--r) * 1.4);background:var(--paper-hi) var(--speck);color:var(--ink);box-shadow:0 24px 50px -30px rgba(0,0,0,.9);transform-origin:50% 100%;transition:transform .55s cubic-bezier(.2,.75,.2,1),opacity .45s ease;will-change:transform}
+  .rA-c:nth-child(3n+2){background:var(--tint) var(--speck)}
+  .rA-c blockquote{margin:0;font:400 27px/1.2 var(--serif);text-wrap:pretty}
+  .rA-c.drag{transition:none}
+  .rA-ft{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .rA-ft p{max-width:13em;font-size:14px;line-height:1.35;color:var(--on-soft)}
+
+  /* B: истории */
+  .rB{position:relative;display:flex;flex-direction:column;min-height:min(134cqi,560px);padding:14px 20px 22px;border-radius:calc(var(--r) * 1.4);background:#211915 var(--grain);color:var(--on);overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  .rB-bar{display:flex;gap:4px;margin-bottom:16px}
+  .rB-bar i{flex:1;height:2.5px;border-radius:2px;background:rgba(235,224,208,.25);overflow:hidden}
+  .rB-bar i::after{content:"";display:block;height:100%;background:var(--on);transform:scaleX(0);transform-origin:0 50%}
+  .rB-bar i.done::after{transform:none}
+  .rB-bar i.on::after{animation:rBp 6.5s linear forwards}
+  .rB.hold .rB-bar i.on::after{animation-play-state:paused}
+  @keyframes rBp{to{transform:none}}
+  .rB-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:20px 0;transition:opacity .35s ease,transform .45s cubic-bezier(.2,.75,.2,1)}
+  .rB-body.out{opacity:0;transform:translateY(10px)}
+  .rB-body blockquote{margin:0;font:400 29px/1.18 var(--serif);text-wrap:pretty}
+  .rB-body p{margin-top:18px;font-size:14px;line-height:1.4;color:var(--on-soft)}
+  .rB-tap{position:absolute;top:60px;bottom:0;width:38%;z-index:2;background:none;border:0;padding:0;cursor:pointer}
+  .rB-tap.l{left:0}.rB-tap.r{right:0;width:62%}
+  .rB-hint{margin-top:12px;font-size:12.5px;color:var(--on-soft);text-align:center}
+
+  /* C: по врачам */
+  .rC-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .rC-tabs button{display:flex;flex-direction:column;align-items:center;gap:8px;min-height:44px;padding:12px 4px 10px;border-radius:var(--r);border:1px solid var(--line);background:none;color:var(--on-soft);font:400 13.5px/1.15 var(--sans);cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+  .rC-tabs button .n14m-av{width:52px;height:52px;filter:grayscale(.5);transition:filter .3s}
+  .rC-tabs button[aria-selected=true]{background:var(--paper-hi);border-color:transparent;color:var(--ink)}
+  .rC-tabs button[aria-selected=true] .n14m-av{filter:none}
+  .rC-meta{margin:16px 0 14px;font-size:14.5px;line-height:1.4;color:var(--on-soft)}
+  .rC-meta b{font:400 18px/1 var(--serif);color:var(--glow);margin-right:4px}
+  .rC-row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * var(--pad));padding:0 var(--pad);scroll-padding-inline:var(--pad);overscroll-behavior-x:contain;transition:opacity .3s}
+  .rC-row::-webkit-scrollbar{display:none}
+  .rC-row.out{opacity:0}
+  .rC-row article{flex:none;width:80cqi;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:250px;padding:22px 20px;border-radius:var(--r);background:var(--paper-hi) var(--speck);color:var(--ink)}
+  .rC-row article:nth-child(2n){background:var(--tint) var(--speck)}
+  .rC-row blockquote{margin:0;font:400 22px/1.24 var(--serif)}
+  .rC-row footer{font-size:13px;line-height:1.35;color:var(--ink-soft)}
+
+  /* D: цитаты */
+  .rD-i{padding:24px 0;border-top:1px solid var(--line)}
+  .rD-i:last-of-type{border-bottom:1px solid var(--line)}
+  .rD-q{font:400 30px/1.12 var(--serif);color:var(--on);text-wrap:balance}
+  .rD-q::before{content:"«"}.rD-q::after{content:"»"}
+  .rD-t{margin:12px 0 16px;font-size:15px;line-height:1.5;color:var(--on-soft)}
+  .rD-i[hidden]{display:none}
+  .rD-more{width:100%;margin-top:20px;background:none;border:1px solid var(--line);color:var(--on)}
+  .rD-i{animation:rDin .6s cubic-bezier(.2,.75,.2,1) both}
+  @keyframes rDin{from{opacity:0;transform:translateY(14px)}}
+
+  /* E: лента */
+  .rE-row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * var(--pad));padding:0 var(--pad);scroll-padding-inline:var(--pad);overscroll-behavior-x:contain}
+  .rE-row::-webkit-scrollbar{display:none}
+  .rE-row article{flex:none;width:84cqi;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:300px;padding:24px 20px;border-radius:var(--r);background:var(--paper-hi) var(--speck);color:var(--ink)}
+  .rE-row article:nth-child(3n+2){background:var(--tint) var(--speck)}
+  .rE-row article:nth-child(3n){background:#211915 var(--grain);color:var(--on)}
+  .rE-row article:nth-child(3n) em{color:var(--glow)}
+  .rE-row blockquote{margin:0;font:400 24px/1.22 var(--serif)}
+  .rE-pg{height:2px;margin-top:18px;border-radius:2px;background:rgba(235,224,208,.18);overflow:hidden}
+  .rE-pg i{display:block;height:100%;width:100%;background:var(--glow);transform-origin:0 50%;transform:scaleX(0);transition:transform .25s linear}
+}
 /* 08 Визит в ÉSTÉ */
 @keyframes v15kb{from{transform:scale(1.14) translate(1.5%,1%)}to{transform:none}}
 .v15b-h{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:clamp(20px,3cqi,44px)}
@@ -889,29 +968,30 @@ video{pointer-events:none}
 <section class="fr" id="otzyvy" aria-label="Отзывы"><div class="mk flush">
 <div class="n14d" data-ph="Отзывы настоящие, но пересказаны своими словами. Перед запуском поставить дословные тексты или виджет ПроДокторов">
   <div class="n14d-h"><h2 class="h2">Пациенты о врачах ÉSTÉ</h2></div>
+  <div class="n14m" aria-label="Отзывы пациентов"></div>
   <div class="n14d-marq"><div>
-    <article class="paper"><header><b>5,0</b><span>ПроДокторов</span></header><p>Всю жизнь боялась стоматологов и откладывала визиты. Теперь идёт на приём с радостью</p><footer>о враче Куря О. А. · март 2026</footer></article>
-    <article><header><b>5,0</b><span>ПроДокторов</span></header><p>Сделала художественную реставрацию и пишет, что зубы невозможно отличить от натуральных</p><footer>о враче Куря О. А. · сентябрь 2025</footer></article>
-    <article class="paper"><header><span>ГлавВрач</span></header><p>Врач не торопилась с осмотром, понятно объяснила лечение и ответила на все вопросы. Пациентка довольна результатом и вернётся к ней</p><footer>о враче Тиунова В. А. · апрель 2025</footer></article>
-    <article class="tint"><header><b>5,0</b><span>ПроДокторов</span></header><p>Получила коронки, о которых мечтала: выглядят естественно и подходят к лицу. Всё прошло без боли</p><footer>о враче Куря О. А. · июль 2025</footer></article>
-    <article><header><b>5,0</b><span>ПроДокторов</span></header><p>Меняла старые пломбы на керамические накладки. Врач проверяла результат на каждом этапе и делала паузы, когда было нужно</p><footer>о враче Куря О. А. · май 2024</footer></article>
-    <article class="tint"><header><span>Прежняя клиника</span></header><p>После 35 лет зубы начали стачиваться. Врач нашла причину в прикусе, хотя улыбка выглядела ровной</p><footer>о враче Тиунова В. А. · декабрь 2024</footer></article>
-    <article class="paper"><header><b>5,0</b><span>ПроДокторов</span></header><p>Два года исправлял прикус и стёртые зубы, а закончил лечение у этого врача. Результат его восхитил</p><footer>о враче Куря О. А. · декабрь 2023</footer></article>
-    <article><header><b>5,0</b><span>ПроДокторов</span></header><p>Эрозия эмали на одиннадцати зубах. Реставрация вышла незаметной, а лечение разбили на этапы, чтобы было удобнее платить</p><footer>о враче Куря О. А. · апрель 2023</footer></article>
-    <article class="paper"><header><span>Прежняя клиника</span></header><p>Ему говорили, что помогут только металлические брекеты. Врач предложила элайнеры, и чуть больше чем за год зубы выровнялись</p><footer>о враче Тиунова В. А. · март 2021</footer></article>
-    <article class="tint"><header><b>5,0</b><span>ПроДокторов</span></header><p>Боялась любых вмешательств. Благодарит, что ей не навязывали лишних процедур и всё сделали без боли</p><footer>о враче Куря О. А. · октябрь 2023</footer></article>
+    <article class="paper" data-hl="Теперь идёт на приём с радостью"><header><b>5,0</b><span>ПроДокторов</span></header><p>Всю жизнь боялась стоматологов и откладывала визиты. Теперь идёт на приём с радостью</p><footer>о враче Куря О. А. · март 2026</footer></article>
+    <article data-hl="зубы невозможно отличить от натуральных"><header><b>5,0</b><span>ПроДокторов</span></header><p>Сделала художественную реставрацию и пишет, что зубы невозможно отличить от натуральных</p><footer>о враче Куря О. А. · сентябрь 2025</footer></article>
+    <article class="paper" data-hl="понятно объяснила лечение"><header><span>ГлавВрач</span></header><p>Врач не торопилась с осмотром, понятно объяснила лечение и ответила на все вопросы. Пациентка довольна результатом и вернётся к ней</p><footer>о враче Тиунова В. А. · апрель 2025</footer></article>
+    <article class="tint" data-hl="выглядят естественно и подходят к лицу"><header><b>5,0</b><span>ПроДокторов</span></header><p>Получила коронки, о которых мечтала: выглядят естественно и подходят к лицу. Всё прошло без боли</p><footer>о враче Куря О. А. · июль 2025</footer></article>
+    <article data-hl="проверяла результат на каждом этапе"><header><b>5,0</b><span>ПроДокторов</span></header><p>Меняла старые пломбы на керамические накладки. Врач проверяла результат на каждом этапе и делала паузы, когда было нужно</p><footer>о враче Куря О. А. · май 2024</footer></article>
+    <article class="tint" data-hl="Врач нашла причину в прикусе"><header><span>Прежняя клиника</span></header><p>После 35 лет зубы начали стачиваться. Врач нашла причину в прикусе, хотя улыбка выглядела ровной</p><footer>о враче Тиунова В. А. · декабрь 2024</footer></article>
+    <article class="paper" data-hl="Результат его восхитил"><header><b>5,0</b><span>ПроДокторов</span></header><p>Два года исправлял прикус и стёртые зубы, а закончил лечение у этого врача. Результат его восхитил</p><footer>о враче Куря О. А. · декабрь 2023</footer></article>
+    <article data-hl="Реставрация вышла незаметной"><header><b>5,0</b><span>ПроДокторов</span></header><p>Эрозия эмали на одиннадцати зубах. Реставрация вышла незаметной, а лечение разбили на этапы, чтобы было удобнее платить</p><footer>о враче Куря О. А. · апрель 2023</footer></article>
+    <article class="paper" data-hl="Врач предложила элайнеры"><header><span>Прежняя клиника</span></header><p>Ему говорили, что помогут только металлические брекеты. Врач предложила элайнеры, и чуть больше чем за год зубы выровнялись</p><footer>о враче Тиунова В. А. · март 2021</footer></article>
+    <article class="tint" data-hl="не навязывали лишних процедур"><header><b>5,0</b><span>ПроДокторов</span></header><p>Боялась любых вмешательств. Благодарит, что ей не навязывали лишних процедур и всё сделали без боли</p><footer>о враче Куря О. А. · октябрь 2023</footer></article>
   </div></div>
   <div class="n14d-marq rev"><div>
-    <article><header><b>5,0</b><span>ПроДокторов</span></header><p>Пять лет не ходила к стоматологу и боялась осуждения. Врач ни разу не упрекнула и вылечила восемь зубов</p><footer>о враче Саитгареева А. З. · май 2025</footer></article>
-    <article class="tint"><header><b>5,0</b><span>ПроДокторов</span></header><p>Врач разобрала с ним томографию, составила план и прямо сказала о рисках. Укол он не почувствовал</p><footer>о враче Саитгареева А. З. · январь 2026</footer></article>
-    <article class="paper"><header><span>ГлавВрач</span></header><p>Пришёл с несколькими проблемами. Врач сразу всё нашла, подробно объяснила лечение, а результат его полностью устроил</p><footer>о враче Тиунова В. А. · январь 2024</footer></article>
-    <article><header><b>5,0</b><span>ПроДокторов</span></header><p>Врач понятно объяснила картину и план, а потом без боли вылечила кариес на пяти зубах</p><footer>о враче Саитгареева А. З. · ноябрь 2026</footer></article>
-    <article class="paper"><header><b>5,0</b><span>ПроДокторов</span></header><p>Новую пломбу не отличить от зуба ни по форме, ни по цвету. После этого переделала у врача все старые</p><footer>о враче Саитгареева А. З. · март 2025</footer></article>
-    <article class="tint"><header><span>DOCTU</span></header><p>Поставили брекеты, и результат превзошёл ожидания. Пациент отмечает уважительное и честное отношение врача</p><footer>о враче Тиунова В. А. · май 2023</footer></article>
-    <article><header><b>5,0</b><span>ПроДокторов</span></header><p>Скол переднего зуба после падения на тренировке. Восстановленный зуб не отличить от прежнего</p><footer>о враче Саитгареева А. З. · январь 2025</footer></article>
-    <article class="tint"><header><b>5,0</b><span>ПроДокторов</span></header><p>Привела к врачу дочь, потом сына. Дети выходили с улыбкой, страх ушёл в первые минуты</p><footer>о враче Саитгареева А. З. · февраль 2025</footer></article>
-    <article class="paper"><header><span>Прежняя клиника</span></header><p>Благодарит за подробную консультацию: врач ответила на все вопросы и развеяла сомнения</p><footer>о враче Тиунова В. А. · май 2021</footer></article>
-    <article><header><b>5,0</b><span>ПроДокторов</span></header><p>Сложное перелечивание каналов. Врач работала тщательно и рассказывала о каждом шаге</p><footer>о враче Саитгареева А. З. · май 2025</footer></article>
+    <article data-hl="Врач ни разу не упрекнула"><header><b>5,0</b><span>ПроДокторов</span></header><p>Пять лет не ходила к стоматологу и боялась осуждения. Врач ни разу не упрекнула и вылечила восемь зубов</p><footer>о враче Саитгареева А. З. · май 2025</footer></article>
+    <article class="tint" data-hl="прямо сказала о рисках"><header><b>5,0</b><span>ПроДокторов</span></header><p>Врач разобрала с ним томографию, составила план и прямо сказала о рисках. Укол он не почувствовал</p><footer>о враче Саитгареева А. З. · январь 2026</footer></article>
+    <article class="paper" data-hl="Врач сразу всё нашла"><header><span>ГлавВрач</span></header><p>Пришёл с несколькими проблемами. Врач сразу всё нашла, подробно объяснила лечение, а результат его полностью устроил</p><footer>о враче Тиунова В. А. · январь 2024</footer></article>
+    <article data-hl="без боли вылечила кариес на пяти зубах"><header><b>5,0</b><span>ПроДокторов</span></header><p>Врач понятно объяснила картину и план, а потом без боли вылечила кариес на пяти зубах</p><footer>о враче Саитгареева А. З. · ноябрь 2026</footer></article>
+    <article class="paper" data-hl="Новую пломбу не отличить от зуба"><header><b>5,0</b><span>ПроДокторов</span></header><p>Новую пломбу не отличить от зуба ни по форме, ни по цвету. После этого переделала у врача все старые</p><footer>о враче Саитгареева А. З. · март 2025</footer></article>
+    <article class="tint" data-hl="результат превзошёл ожидания"><header><span>DOCTU</span></header><p>Поставили брекеты, и результат превзошёл ожидания. Пациент отмечает уважительное и честное отношение врача</p><footer>о враче Тиунова В. А. · май 2023</footer></article>
+    <article data-hl="Восстановленный зуб не отличить от прежнего"><header><b>5,0</b><span>ПроДокторов</span></header><p>Скол переднего зуба после падения на тренировке. Восстановленный зуб не отличить от прежнего</p><footer>о враче Саитгареева А. З. · январь 2025</footer></article>
+    <article class="tint" data-hl="страх ушёл в первые минуты"><header><b>5,0</b><span>ПроДокторов</span></header><p>Привела к врачу дочь, потом сына. Дети выходили с улыбкой, страх ушёл в первые минуты</p><footer>о враче Саитгареева А. З. · февраль 2025</footer></article>
+    <article class="paper" data-hl="развеяла сомнения"><header><span>Прежняя клиника</span></header><p>Благодарит за подробную консультацию: врач ответила на все вопросы и развеяла сомнения</p><footer>о враче Тиунова В. А. · май 2021</footer></article>
+    <article data-hl="рассказывала о каждом шаге"><header><b>5,0</b><span>ПроДокторов</span></header><p>Сложное перелечивание каналов. Врач работала тщательно и рассказывала о каждом шаге</p><footer>о враче Саитгареева А. З. · май 2025</footer></article>
   </div></div>
 </div>
 </div></section>
@@ -1160,9 +1240,13 @@ html.mn-open .vsw,html.demo .vsw{display:none}
     <div class="vsw-r" data-k="uv"></div>
     <p class="vsw-d" id="vsw-ud"></p>
     <div class="vsw-a"><button type="button" class="vsw-go" id="vsw-tou">Показать услуги</button></div>
+    <h5>Отзывы на телефоне</h5>
+    <div class="vsw-r" data-k="rv"></div>
+    <p class="vsw-d" id="vsw-rd"></p>
+    <div class="vsw-a"><button type="button" class="vsw-go" id="vsw-tor">Показать отзывы</button></div>
     <button type="button" class="vsw-ph js-phsw" aria-pressed="false"><span>Показать заглушки</span><i></i></button>
   </div>
-  <button type="button" class="vsw-b" id="vsw-b" aria-expanded="false" aria-controls="vsw-p">Варианты · меню <b id="vsw-m">A</b> · услуги <b id="vsw-u">D</b></button>
+  <button type="button" class="vsw-b" id="vsw-b" aria-expanded="false" aria-controls="vsw-p">Варианты · меню <b id="vsw-m">A</b> · услуги <b id="vsw-u">D</b> · отзывы <b id="vsw-r">A</b></button>
 </div>
 
 <script>
@@ -1189,6 +1273,11 @@ h:function(){return '<div class="mn vD"><div class="sh js-mx"></div><div class="
 E:{t:'Услуги в шапке',d:'Кнопки «Меню» нет: на компьютере пункт «Услуги» в шапке открывает витрину из десяти плиток с фото. На телефоне внизу закреплена панель: услуги, врачи, цены, звонок, запись.',
 h:function(){return '<div class="mn vE"><div class="sh js-mx"></div><div class="dd"><div class="dd-h"><b>Услуги</b><span class="cap">10 направлений · страница на каждое</span></div><ul class="tiles">'+SV.map(function(s){return '<li><a href="#uslugi"><img src="assets/'+s[1]+'.jpg" alt="" loading="lazy"><span>'+s[0]+'</span></a></li>'}).join('')+'</ul></div></div>'}}
 };
+var RV={A:['Колода','Как у Smartmed: стопка карточек, верхнюю смахивают пальцем или кнопкой «Следующий», под ней видны края следующих. Сама сменяется раз в 6 секунд.'],
+B:['Истории','Тёмная карточка в формате сторис, как «Визит в ÉSTÉ»: отзывы идут по врачам, сверху полоски, касание справа и слева листает, удержание ставит на паузу.'],
+C:['По врачам','Сверху три врача с фото, под ними лента отзывов выбранного врача и его рейтинг на ПроДокторов. Листается пальцем.'],
+D:['Цитаты','Без движения, как в журнале: ключевая фраза отзыва крупно, под ней пересказ и врач. Видно пять, кнопка показывает ещё.'],
+E:['Лента','Одна лента карточек с выглядывающей следующей, листается пальцем и сама раз в 5 секунд, снизу тонкая линия прогресса.']};
 var UV={A:['Строка заливается','Значка нет. При наведении строку заливает светлым, как карточки выше. На телефоне нажимается вся строка.'],
 B:['Линия-стрелка','Тонкая золотая линия со стрелкой, при наведении вытягивается. На телефоне короткая линия справа.'],
 C:['«Подробнее»','Слово мелкими прописными, подчёркивание прорисовывается золотом.'],
@@ -1199,7 +1288,7 @@ function put(k,v){try{localStorage.setItem('este-'+k,v)}catch(e){}}
 /* показ клиенту: панель вариантов скрыта, меню A и услуги D закреплены; #varianty в адресе включает панель, #pokaz снова прячет */
 if(location.hash=='#varianty')put('dev','1');if(location.hash=='#pokaz')put('dev','');
 var DEV=get('dev','')=='1';
-var mv=DEV?get('mv','A'):'A',uv=DEV?get('uv','D'):'D';if(!MV[mv])mv='A';if(!UV[uv])uv='D';
+var mv=DEV?get('mv','A'):'A',uv=DEV?get('uv','D'):'D',rv=DEV?get('rv','A'):'A';if(!MV[mv])mv='A';if(!UV[uv])uv='D';if(!RV[rv])rv='A';
 if(!DEV)root.classList.add('demo');
 addEventListener('hashchange',function(){if(location.hash=='#varianty'||location.hash=='#pokaz'){put('dev',location.hash=='#varianty'?'1':'');location.reload()}});
 var navSv=d.querySelector('.h-nav a[href="#uslugi"]'),fix=d.getElementById('menu-fix');
@@ -1213,7 +1302,8 @@ function renderMenu(){
   sync();
 }
 function renderU(){cls('uv',uv);d.getElementById('vsw-u').textContent=uv;d.getElementById('vsw-ud').textContent=UV[uv][0]+'. '+UV[uv][1];sync()}
-function sync(){[].forEach.call(d.querySelectorAll('.vsw-r'),function(r){var k=r.dataset.k,cur=k=='mv'?mv:uv;[].forEach.call(r.children,function(b){b.setAttribute('aria-pressed',String(b.dataset.v===cur))})})}
+function renderR(){cls('rv',rv);d.getElementById('vsw-r').textContent=rv;d.getElementById('vsw-rd').textContent=RV[rv][0]+'. '+RV[rv][1];sync();d.dispatchEvent(new CustomEvent('este-rv'))}
+function sync(){[].forEach.call(d.querySelectorAll('.vsw-r'),function(r){var k=r.dataset.k,cur=k=='mv'?mv:k=='uv'?uv:rv;[].forEach.call(r.children,function(b){b.setAttribute('aria-pressed',String(b.dataset.v===cur))})})}
 var last=null;
 function open(e){last=e&&e.currentTarget||null;panel(false);root.classList.add('mn-open');if(mv!='E')d.body.style.overflow='hidden';var f=mn.querySelector('.x,.mbtn,a');if(f)setTimeout(function(){f.focus({preventScroll:true})},50)}
 function close(silent){if(!root.classList.contains('mn-open'))return;root.classList.remove('mn-open');d.body.style.overflow='';if(!silent&&last&&last.focus)last.focus({preventScroll:true})}
@@ -1234,11 +1324,12 @@ var pb=d.getElementById('vsw-b'),pp=d.getElementById('vsw-p');
 function panel(on){pp.hidden=!on;pb.setAttribute('aria-expanded',String(on))}
 pb.addEventListener('click',function(){panel(pp.hidden)});
 d.addEventListener('click',function(e){if(!pp.hidden&&!e.target.closest('#vsw'))panel(false)});
-[].forEach.call(d.querySelectorAll('.vsw-r'),function(r){var k=r.dataset.k,src=k=='mv'?MV:UV;
+[].forEach.call(d.querySelectorAll('.vsw-r'),function(r){var k=r.dataset.k,src=k=='mv'?MV:k=='uv'?UV:RV;
   r.innerHTML=Object.keys(src).map(function(v){return '<button type="button" data-v="'+v+'"><i>'+v+'</i>'+(k=='mv'?src[v].t:src[v][0])+'</button>'}).join('');
-  r.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(k=='mv'){mv=b.dataset.v;put('mv',mv);renderMenu()}else{uv=b.dataset.v;put('uv',uv);renderU()}})});
+  r.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(k=='mv'){mv=b.dataset.v;put('mv',mv);renderMenu()}else if(k=='uv'){uv=b.dataset.v;put('uv',uv);renderU()}else{rv=b.dataset.v;put('rv',rv);renderR()}})});
 d.getElementById('vsw-tou').addEventListener('click',function(){panel(false);var u=d.querySelector('.u0-l');if(u)u.scrollIntoView({behavior:'smooth',block:'center'})});
-renderMenu();renderU();
+d.getElementById('vsw-tor').addEventListener('click',function(){panel(false);var u=d.getElementById('otzyvy');if(u)u.scrollIntoView({behavior:'smooth',block:'start'})});
+renderMenu();renderU();renderR();
 })();
 </script>
 
@@ -1373,25 +1464,83 @@ l.addEventListener('mouseleave',function(){pv.classList.remove('on')})});})();
 m.forEach(function(x){var t=x.firstElementChild,c=t.cloneNode(true),tm=0;c.setAttribute('aria-hidden','true');x.appendChild(c);
   x.addEventListener('touchstart',function(){clearTimeout(tm);x.classList.add('hold')},{passive:true});
   x.addEventListener('touchend',function(){clearTimeout(tm);tm=setTimeout(function(){x.classList.remove('hold')},4000)},{passive:true})});
-/* телефон: карточки сами перелистываются по одной, ряды по очереди; палец листает вручную, автолистание продолжается через 5 секунд */
-var ph=function(){return m[0].clientWidth<=760&&innerWidth<=820};
-m.forEach(function(x,ri){var ds=[].slice.call(x.children),rev=x.classList.contains('rev'),n=ds[0].children.length,arts=[],i=0,tm=0,vis=false,hold=0,sx=0,sy=0,dx=0,drag=false,lock=0;
-  function all(){arts=[];ds.forEach(function(d){arts=arts.concat([].slice.call(d.children))})}
-  function off(k){return arts[k].offsetLeft-arts[0].offsetLeft}
-  function set(v,anim){ds.forEach(function(d){d.style.transition=anim?'transform .95s cubic-bezier(.65,0,.25,1)':'none';d.style.transform='translate3d('+v+'px,0,0)'})}
-  function go(k,anim){all();i=k;set(-off(i),anim)}
-  function norm(){if(i>=n){go(i-n,false)}else if(i<0){go(i+n,false)}}
-  function step(){if(!ph()||!vis||hold||document.hidden)return;norm();go(rev?i-1<0?(go(n,false),n-1):i-1:i+1,true)}
-  function loop(){clearInterval(tm);tm=setInterval(step,4200)}
-  ds[0].addEventListener('transitionend',norm);
-  if(rev)setTimeout(function(){if(ph())go(n,false)},0);
-  setTimeout(loop,ri*2100);
-  new IntersectionObserver(function(e){vis=e[0].isIntersecting},{threshold:.35}).observe(x);
-  x.addEventListener('touchstart',function(e){if(!ph())return;hold=1;clearTimeout(lock);clearInterval(tm);all();if(i<n/2)go(i+n,false);else if(i>=n+n/2)go(i-n,false);sx=e.touches[0].clientX;sy=e.touches[0].clientY;dx=0;drag=null},{passive:true});
-  x.addEventListener('touchmove',function(e){if(!ph())return;var mx=e.touches[0].clientX-sx,my=e.touches[0].clientY-sy;if(drag===null)drag=Math.abs(mx)>Math.abs(my)+4;if(!drag)return;e.preventDefault();dx=mx;set(-off(i)+dx,false)},{passive:false});
-  x.addEventListener('touchend',function(){if(!ph())return;if(drag){var k=dx<-40?i+1:dx>40?i-1:i;go(Math.max(0,Math.min(2*n-1,k)),true)}lock=setTimeout(function(){hold=0;loop()},5000)},{passive:true});
-  addEventListener('resize',function(){if(ph())go(i,false);else ds.forEach(function(d){d.style.transition=d.style.transform=''})});
-});})();
+/* телефонные варианты: данные берём из карточек десктопа, ключевая фраза в data-hl */
+var M=document.querySelector('.n14m');if(!M)return;
+var AV={'Куря':['assets/kurya-coat.jpg','Куря О. А.','Ортопед, главный врач'],'Саитгареева':['assets/saitgareeva-coat.jpg','Саитгареева А. З.','Терапевт, эндодонтист'],'Тиунова':['assets/tiunova-coat.jpg','Тиунова В. А.','Ортодонт']};
+var META={'Куря':'<b>5,0</b> на ПроДокторов, 24 отзыва','Саитгареева':'<b>5,0</b> на ПроДокторов, 19 отзывов','Тиунова':'Отзывы с ГлавВрач, DOCTU и сайтов прежних клиник'};
+function esc(t){return t.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var rows=[].slice.call(document.querySelectorAll('.n14d-marq>div:not([aria-hidden])')).map(function(d){return [].slice.call(d.children)});
+var R=[];for(var k=0;k<Math.max(rows[0].length,rows[1]?rows[1].length:0);k++)rows.forEach(function(r){if(r[k])R.push(r[k])});
+R=R.map(function(a){var t=a.querySelector('p').textContent.trim(),hl=a.getAttribute('data-hl')||'',f=a.querySelector('footer').textContent,mm=f.match(/о враче\s+(\S+)/),doc=mm?mm[1]:'',dt=(f.split('·')[1]||'').trim(),src=a.querySelector('header span').textContent.trim(),rt=a.querySelector('header b');
+  var q=esc(t);if(hl){var e=esc(hl);q=q.replace(e,'<em>'+e+'</em>')}
+  return {t:t,q:q,hl:hl,doc:doc,dt:dt,src:src,rt:rt?rt.textContent.trim():''}});
+function meta(r){return esc(r.src)+(r.rt?' · '+esc(r.rt):'')+(r.dt?' · '+esc(r.dt):'')}
+function by(r){var a=AV[r.doc]||['', r.doc,''];return '<div class="n14m-by"><img class="n14m-av" src="'+a[0]+'" alt="" loading="lazy"><span><b>'+esc(a[1])+'</b><small>'+meta(r)+'</small></span></div>'}
+function inView(el){var b=el.getBoundingClientRect();return b.bottom>innerHeight*.2&&b.top<innerHeight*.8&&b.width>0}
+var touchedAt=0;M.addEventListener('touchstart',function(){touchedAt=Date.now()},{passive:true});
+function idle(){return Date.now()-touchedAt>6000&&!document.hidden}
+
+/* A: колода */
+var A=document.createElement('div');A.className='n14m-A';
+A.innerHTML='<div class="rA-st">'+R.map(function(r){return '<figure class="rA-c"><blockquote>«'+r.q+'»</blockquote><figcaption>'+by(r)+'</figcaption></figure>'}).join('')+'</div><div class="rA-ft"><p>Смахните отзыв, чтобы прочитать следующий</p><button type="button" class="n14m-btn rA-nx">Следующий</button></div>';
+var st=A.querySelector('.rA-st'),cs=[].slice.call(st.children),ord=cs.map(function(c,i){return i}),busy=false;
+function pos(c,k){var q=Math.min(k,3);c.style.transform='translate3d(0,'+(q*13)+'px,0) scale('+(1-q*.05)+')';c.style.opacity=k<3?'1':'0';c.style.pointerEvents=k?'none':''}
+function lay(){ord.forEach(function(ci,k){var c=cs[ci];c.style.zIndex=100-k;pos(c,k);c.setAttribute('aria-hidden',k?'true':'false')})}
+function fly(dir){if(busy)return;busy=true;var c=cs[ord[0]];c.classList.remove('drag');c.style.transform='translate3d('+(dir*125)+'%,-20px,0) rotate('+(dir*16)+'deg)';c.style.opacity='0';
+  ord.slice(1).forEach(function(ci,k){pos(cs[ci],k)});
+  setTimeout(function(){ord.push(ord.shift());c.style.transition='none';lay();c.offsetWidth;c.style.transition='';busy=false},430)}
+lay();
+A.querySelector('.rA-nx').addEventListener('click',function(){touchedAt=Date.now();fly(-1)});
+var sx=0,sy=0,dx=0,lk=null;
+st.addEventListener('touchstart',function(e){if(busy)return;sx=e.touches[0].clientX;sy=e.touches[0].clientY;dx=0;lk=null},{passive:true});
+st.addEventListener('touchmove',function(e){if(busy)return;var mx=e.touches[0].clientX-sx,my=e.touches[0].clientY-sy;if(lk===null&&(Math.abs(mx)>6||Math.abs(my)>6))lk=Math.abs(mx)>Math.abs(my);if(!lk)return;e.preventDefault();dx=mx;var c=cs[ord[0]];c.classList.add('drag');c.style.transform='translate3d('+dx+'px,0,0) rotate('+(dx*.05)+'deg)'},{passive:false});
+st.addEventListener('touchend',function(){if(!lk)return;var c=cs[ord[0]];c.classList.remove('drag');if(Math.abs(dx)>70)fly(dx<0?-1:1);else lay();lk=null},{passive:true});
+setInterval(function(){if(M.offsetParent&&A.offsetParent&&idle()&&inView(A))fly(-1)},6000);
+
+/* B: истории, по врачам */
+var G=['Куря','Саитгареева','Тиунова'].map(function(d){return R.filter(function(r){return r.doc===d})}).filter(function(g){return g.length});
+var B=document.createElement('div');B.className='n14m-B';
+B.innerHTML='<div class="rB dk"><div class="rB-bar"></div>'+'<div class="rB-hd"></div><div class="rB-body"></div><button type="button" class="rB-tap l" aria-label="Предыдущий отзыв"></button><button type="button" class="rB-tap r" aria-label="Следующий отзыв"></button></div><p class="rB-hint">Касание справа листает дальше, удержание ставит на паузу</p>';
+var bx=B.querySelector('.rB'),bb=B.querySelector('.rB-bar'),bh=B.querySelector('.rB-hd'),bd=B.querySelector('.rB-body'),gi=0,ri=0,bOn=false;
+function bShow(anim){var g=G[gi],r=g[ri];bb.innerHTML=g.map(function(x,i){return '<i class="'+(i<ri?'done':i===ri&&bOn?'on':'')+'"></i>'}).join('');
+  var set=function(){bh.innerHTML=by(r);bd.innerHTML='<blockquote>«'+r.q+'»</blockquote>';bd.classList.remove('out')};
+  if(anim){bd.classList.add('out');setTimeout(set,260)}else set();
+  var on=bb.querySelector('.on');if(on)on.addEventListener('animationend',function(){bStep(1)},{once:true})}
+function bStep(d){ri+=d;if(ri>=G[gi].length){gi=(gi+1)%G.length;ri=0}else if(ri<0){gi=(gi-1+G.length)%G.length;ri=G[gi].length-1}bShow(true)}
+B.querySelector('.rB-tap.r').addEventListener('click',function(){bStep(1)});
+B.querySelector('.rB-tap.l').addEventListener('click',function(){bStep(-1)});
+var ht=0;bx.addEventListener('touchstart',function(){ht=setTimeout(function(){bx.classList.add('hold')},180)},{passive:true});
+['touchend','touchcancel'].forEach(function(ev){bx.addEventListener(ev,function(){clearTimeout(ht);bx.classList.remove('hold')},{passive:true})});
+bx.addEventListener('contextmenu',function(e){e.preventDefault()});
+bShow(false);
+
+/* C: по врачам */
+var C=document.createElement('div');C.className='n14m-C';
+C.innerHTML='<div class="rC-tabs" role="tablist">'+G.map(function(g,i){var a=AV[g[0].doc];return '<button type="button" role="tab" aria-selected="'+(i===0)+'" data-i="'+i+'"><img class="n14m-av" src="'+a[0]+'" alt="" loading="lazy">'+esc(a[1].split(' ')[0])+'</button>'}).join('')+'</div><p class="rC-meta"></p><div class="rC-row"></div>';
+var cm=C.querySelector('.rC-meta'),cr=C.querySelector('.rC-row');
+function cShow(i,anim){var g=G[i];var set=function(){cm.innerHTML=esc(AV[g[0].doc][2])+'. '+META[g[0].doc];cr.innerHTML=g.map(function(r){return '<article><blockquote>«'+r.q+'»</blockquote><footer>'+meta(r)+'</footer></article>'}).join('');cr.scrollLeft=0;cr.classList.remove('out')};
+  [].forEach.call(C.querySelectorAll('.rC-tabs button'),function(b){b.setAttribute('aria-selected',String(+b.dataset.i===i))});
+  if(anim){cr.classList.add('out');setTimeout(set,220)}else set()}
+C.querySelector('.rC-tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b)cShow(+b.dataset.i,true)});
+cShow(0,false);
+
+/* D: цитаты */
+var D=document.createElement('div');D.className='n14m-D';
+D.innerHTML=R.map(function(r,i){return '<article class="rD-i"'+(i>=5?' hidden':'')+'><p class="rD-q">'+esc(r.hl||r.t)+'</p><p class="rD-t">'+esc(r.t)+'</p>'+by(r)+'</article>'}).join('')+'<button type="button" class="n14m-btn rD-more">Ещё отзывы</button>';
+D.querySelector('.rD-more').addEventListener('click',function(){var h=[].slice.call(D.querySelectorAll('.rD-i[hidden]')).slice(0,5);h.forEach(function(x){x.hidden=false});if(!D.querySelector('.rD-i[hidden]'))this.hidden=true});
+
+/* E: лента */
+var E=document.createElement('div');E.className='n14m-E';
+E.innerHTML='<div class="rE-row">'+R.map(function(r,i){return '<article><blockquote>«'+r.q+'»</blockquote>'+by(r)+'</article>'}).join('')+'</div><div class="rE-pg"><i></i></div>';
+var er=E.querySelector('.rE-row'),ep=E.querySelector('.rE-pg i');
+er.addEventListener('scroll',function(){var m=er.scrollWidth-er.clientWidth;ep.style.transform='scaleX('+(m>0?(.06+.94*er.scrollLeft/m):0).toFixed(3)+')'},{passive:true});
+setInterval(function(){if(!(E.offsetParent&&idle()&&inView(E)))return;var a=er.children,x=er.scrollLeft,nx=null;for(var i=0;i<a.length;i++){if(a[i].offsetLeft-er.children[0].offsetLeft>x+8){nx=a[i];break}}er.scrollTo({left:nx?nx.offsetLeft-er.children[0].offsetLeft:0,behavior:'smooth'})},5000);
+ep.style.transform='scaleX(.06)';
+
+[A,B,C,D,E].forEach(function(x){M.appendChild(x)});
+/* истории запускают полоску только когда видны */
+new IntersectionObserver(function(e){var v=e[0].isIntersecting&&B.offsetParent;if(v&&!bOn){bOn=true;bShow(false)}else if(!v&&bOn){bOn=false;bShow(false)}},{threshold:.4}).observe(B);
+document.addEventListener('este-rv',function(){bOn=false;bShow(false)});})();
 (function(){var R=window.__mk.reduce;
 document.querySelectorAll('.v15b').forEach(function(a){var vp=a.querySelector('.v15b-vp'),tr=a.querySelector('.v15b-tr'),cs=a.querySelectorAll('.v15b-c'),i=0,t0=performance.now(),D=3000,seen=false,first=true;
   cs.forEach(function(c){var pr=document.createElement('div');pr.className='v15b-pr';for(var k=0;k<cs.length;k++)pr.appendChild(document.createElement('i'));var w=document.createElement('span');w.className='v15b-who';w.innerHTML='<b><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg></b>ÉSTÉ';c.prepend(pr,w)});
