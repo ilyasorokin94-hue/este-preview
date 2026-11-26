@@ -266,17 +266,20 @@ body{margin:0;background:#352B25;color:#EBE0D0;font:300 14px/1.45 'Jost','Centur
 .bs-mph,.bs-mid{display:contents}
 .bs-mph{display:none}
 @container mk (max-width:700px){
-  /* Телефон: панель закреплена под шапкой, состояния сменяются вслед за пальцем:
-     уходящее гаснет и сдвигается вверх, затем снизу проявляется следующее, кадры слегка плывут навстречу тексту */
+  /* Телефон: панель закреплена под шапкой, внутри неё три экрана стоят друг под другом лентой.
+     Прокрутка страницы двигает ленту (один transform, без смены видимости), между экранами есть паузы,
+     движение сглаживается в requestAnimationFrame, поэтому на iOS и Android нет рывков и пустых кадров */
   .mk.pin:has(>.bs){padding-block:12px}
   .bs{height:340vh;height:340svh}
   .bs-pin{position:sticky;top:calc(env(safe-area-inset-top,0px) + 66px)}
   .bs-panel{height:calc(100vh - 90px);height:calc(100svh - 84px - env(safe-area-inset-top,0px));min-height:420px;max-height:760px;padding:0}
   .bs-ph{display:none!important}
-  .bs-state{padding:0 22px;transition:none;will-change:opacity,transform;transform:translate3d(0,0,0)}
+  .bs-panel{contain:paint;-webkit-mask-image:-webkit-radial-gradient(white,black)}
+  .bs-state,.bs-panel .bs-state{padding:0 22px;transition:none;opacity:1;pointer-events:auto;transform:translate3d(0,0,0);will-change:transform;backface-visibility:hidden}
+  .bs .s2{top:100%;bottom:-100%}.bs .s3{top:200%;bottom:-200%}
   .bs .s2,.bs .s3{justify-content:space-between;gap:12px;padding:18px 22px}
   .bs-mid{display:flex;flex-direction:column;align-items:center;flex:none}
-  .bs-mph{display:block;flex:0 1 auto;width:74%;height:auto;aspect-ratio:1.55;min-height:72px;object-fit:cover;border-radius:4px;filter:grayscale(.12);will-change:transform}
+  .bs-mph{display:block;flex:0 1 auto;width:74%;height:auto;aspect-ratio:1.55;min-height:72px;object-fit:cover;border-radius:4px}
   .bs .s1 .logo{width:58cqi}
   .bs .s2 .logo{width:62cqi;margin:10px 0 12px}
   .bs .s2 .cap{font-size:12px;letter-spacing:.12em}
@@ -1333,19 +1336,21 @@ renderMenu();renderU();
   });
 })();
 (function(){var bss=document.querySelectorAll('.bs'),tk=false;
-function cl(x){return x<0?0:x>1?1:x}function sm(x){x=cl(x);return x*x*(3-2*x)}
-var B1=.31,B2=.65,W=.075;
-function upd(){tk=false;bss.forEach(function(sec){var r=sec.getBoundingClientRect();if(!r.height)return;var total=r.height-innerHeight;
-  var p=total>0?cl((-r.top+innerHeight*.35)/(total+innerHeight*.35)):1,pn=sec.querySelector('.bs-panel'),st=pn.querySelectorAll('.bs-state');
-  pn.setAttribute('data-s',p<B1?1:p<B2?2:3);
-  if(sec.clientWidth>760){st.forEach(function(e){e.style.opacity=e.style.transform=e.style.pointerEvents=''});return}
-  /* уходящее состояние гаснет за W до границы, следующее проявляется за W после: двух текстов одновременно не бывает */
-  var o=[1-sm((p-(B1-W))/W), sm((p-B1)/W)*(1-sm((p-(B2-W))/W)), sm((p-B2)/W)],
-      dir=[p>=B1-W?-1:1, p<B1+W?1:-1, 1];
-  st.forEach(function(e,i){var v=o[i];e.style.opacity=v.toFixed(3);e.style.transform='translate3d(0,'+((1-v)*26*dir[i]).toFixed(1)+'px,0) scale('+(.985+.015*v).toFixed(4)+')';e.style.pointerEvents=v>.5?'auto':'none';
-    var lo=i==1?(p-B1)/(B2-B1):i==2?(p-B2)/(1-B2):0;lo=cl(lo);
-    e.querySelectorAll('.bs-mph').forEach(function(m){var k=m.classList.contains('t')?1:-1;m.style.transform='translate3d(0,'+((lo-.5)*-14*k).toFixed(1)+'px,0)'})})})}
-addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd();})();
+function cl(x){return x<0?0:x>1?1:x}
+function es(x){x=cl(x);return .5-.5*Math.cos(Math.PI*x)}
+/* ход ленты по прогрессу прокрутки: короткие паузы на каждом экране и плавные переходы между ними */
+function pos(p){return p<.12?0:p<.44?es((p-.12)/.32):p<.56?1:p<.88?1+es((p-.56)/.32):2}
+var S=[];bss.forEach(function(sec){var pn=sec.querySelector('.bs-panel');S.push({sec:sec,pn:pn,st:pn.querySelectorAll('.bs-state'),cur:null,tg:0,ph:false})});
+function prog(sec){var r=sec.getBoundingClientRect(),total=r.height-innerHeight;return total>0?cl((-r.top+innerHeight*.35)/(total+innerHeight*.35)):1}
+function paint(o){var h=o.pn.clientHeight,y=-o.cur*h;o.st.forEach(function(e,i){var d=Math.min(1,Math.abs(o.cur-i));e.style.transform='translate3d(0,'+y.toFixed(2)+'px,0)';e.style.opacity=(1-.55*d).toFixed(3)})}
+function loop(){tk=false;var more=false;S.forEach(function(o){
+  var ph=o.sec.clientWidth<=760,p=prog(o.sec);o.pn.setAttribute('data-s',p<.3?1:p<.7?2:3);
+  if(!ph){if(o.ph){o.st.forEach(function(e){e.style.transform=e.style.opacity=''});o.ph=false;o.cur=null}return}
+  o.ph=true;o.tg=pos(p);if(o.cur===null)o.cur=o.tg;
+  var dlt=o.tg-o.cur;o.cur=Math.abs(dlt)<.0008?o.tg:o.cur+dlt*.2;paint(o);if(o.cur!==o.tg)more=true});
+  if(more)req()}
+function req(){if(!tk){tk=true;requestAnimationFrame(loop)}}
+addEventListener('scroll',req,{passive:true});addEventListener('resize',req);addEventListener('orientationchange',req);req();})();
 (function(){document.querySelectorAll('.u0-l').forEach(function(l){var pv=l.querySelector('.u0-pv');if(!pv)return;var ims=pv.querySelectorAll('img');
 l.addEventListener('mousemove',function(e){if(!document.documentElement.classList.contains('uv-E'))return;var r=e.target.closest('.u0-r');if(!r){pv.classList.remove('on');return}var b=l.getBoundingClientRect(),i=+r.dataset.i;ims.forEach(function(m,j){m.classList.toggle('on',j===i)});pv.classList.add('on');pv.style.left=(e.clientX-b.left+150)+'px';pv.style.top=(e.clientY-b.top)+'px'});
 l.addEventListener('mouseleave',function(){pv.classList.remove('on')})});})();
