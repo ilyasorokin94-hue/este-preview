@@ -276,13 +276,13 @@ body{margin:0;background:#352B25;color:#EBE0D0;font:300 14px/1.45 'Jost','Centur
 .bs-mph{display:none}
 .bsm{display:none}
 @container mk (max-width:700px){
-  /* Телефон, по механике Delfi: панель закреплена под шапкой примерно на 1150px прокрутки.
+  /* Телефон, по механике Delfi: панель закреплена под шапкой примерно на 1800px прокрутки (замедлено по просьбе Ильи 26.11).
      Всё стоит на своих местах, двигается только прозрачность (и лёгкий масштаб логотипа),
      и она привязана к прокрутке напрямую, без задержек и анимаций по времени.
      Сначала один логотип, затем по очереди подпись, текст и два фото; короткая смена на вторую композицию,
      которая так же собирается по элементам, и только потом панель уезжает вверх */
   .mk.pin:has(>.bs){padding-block:12px}
-  .bs{height:auto}.bs::after{content:"";display:block;height:1150px}
+  .bs{height:auto}.bs::after{content:"";display:block;height:1820px}
   .bs-pin{position:sticky;top:calc(env(safe-area-inset-top,0px) + 66px)}
   .bs-panel{height:calc(100vh - 90px);height:calc(100svh - 84px - env(safe-area-inset-top,0px));min-height:440px;max-height:780px;padding:0;contain:paint}
   .bs-ph,.bs-state{display:none!important}
@@ -906,12 +906,12 @@ img.hero-vid{object-fit:cover}
       <img loading="lazy" decoding="async" class="bs-ph a" src="assets/cabinet-reeded.jpg" alt="Кабинет ÉSTÉ">
       <img loading="lazy" decoding="async" class="bs-ph b" src="assets/cabinet-wide.jpg" alt="Кабинет ÉSTÉ">
       <div class="bsm">
-        <div class="bsm-s"><img loading="lazy" decoding="async" data-f="400,500,600,650" src="assets/cabinet-reeded.jpg" alt="Кабинет ÉSTÉ"><img loading="lazy" decoding="async" data-f="950,1050" src="assets/reception-wide.jpg" alt="Ресепшен ÉSTÉ" loading="lazy"></div>
+        <div class="bsm-s"><img loading="lazy" decoding="async" data-f="560,760,900,1080" src="assets/cabinet-reeded.jpg" alt="Кабинет ÉSTÉ"><img loading="lazy" decoding="async" data-f="1480,1680" src="assets/reception-wide.jpg" alt="Ресепшен ÉSTÉ" loading="lazy"></div>
         <div class="bsm-c">
-          <div><p class="cap" data-f="100,200,600,650">Стоматология эстетики в Москве</p><svg class="logo w" viewBox="13 -192 657 197" role="img" aria-label="ÉSTÉ"><use href="#este-word"/></svg><p class="txt" data-f="200,300,600,650">Мы относимся к эстетике как к искусству. Оттенок, форму и игру света на эмали врач подбирает под ваше лицо, а здоровье зубов остаётся основой, на которой держится красота</p></div>
-          <div><p class="cap" data-f="650,750">ÉSTÉ</p><p class="slogan" data-f="750,850">Там, где медицина становится искусством</p><p class="txt" data-f="850,950">Мы врачи, художники и реставраторы, которые подходят к делу с улыбкой</p></div>
+          <div><p class="cap" data-f="140,340,900,1080">Стоматология эстетики в Москве</p><svg class="logo w" viewBox="13 -192 657 197" role="img" aria-label="ÉSTÉ"><use href="#este-word"/></svg><p class="txt" data-f="300,500,900,1080">Мы относимся к эстетике как к искусству. Оттенок, форму и игру света на эмали врач подбирает под ваше лицо, а здоровье зубов остаётся основой, на которой держится красота</p></div>
+          <div><p class="cap" data-f="1040,1240">ÉSTÉ</p><p class="slogan" data-f="1180,1380">Там, где медицина становится искусством</p><p class="txt" data-f="1320,1520">Мы врачи, художники и реставраторы, которые подходят к делу с улыбкой</p></div>
         </div>
-        <div class="bsm-s"><img loading="lazy" decoding="async" data-f="400,500,600,650" src="assets/cabinet-wide.jpg" alt="Кабинет ÉSTÉ"><img loading="lazy" decoding="async" data-f="950,1050" src="assets/cabinet-marble.jpg" alt="Кабинет ÉSTÉ" loading="lazy"></div>
+        <div class="bsm-s"><img loading="lazy" decoding="async" data-f="560,760,900,1080" src="assets/cabinet-wide.jpg" alt="Кабинет ÉSTÉ"><img loading="lazy" decoding="async" data-f="1480,1680" src="assets/cabinet-marble.jpg" alt="Кабинет ÉSTÉ" loading="lazy"></div>
       </div>
       <div class="bs-state s1" aria-hidden="true"><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg></div>
       <div class="bs-state s2">
@@ -1477,13 +1477,14 @@ var S=[];bss.forEach(function(sec){var pn=sec.querySelector('.bs-panel'),pin=sec
   var F=[].map.call(sec.querySelectorAll('.bsm [data-f]'),function(e){var v=e.getAttribute('data-f').split(',').map(Number);return {e:e,v:v,o:-1}});
   S.push({sec:sec,pn:pn,pin:pin,F:F,w:sec.querySelector('.bsm .w'),ws:-1})});
 /* прозрачность по пикселям прокрутки от начала закрепления: [появление от, до, исчезновение от, до] */
-function op(t,v){var a=cl((t-v[0])/(v[1]-v[0]));if(v.length>2)a*=1-cl((t-v[2])/(v[3]-v[2]));return a}
+function sm(x){x=cl(x);return x*x*(3-2*x)}
+function op(t,v){var a=sm((t-v[0])/(v[1]-v[0]));if(v.length>2)a*=1-sm((t-v[2])/(v[3]-v[2]));return a}
 function loop(){tk=false;S.forEach(function(o){
   var ph=o.sec.clientWidth<=760;
   if(!ph){var p=prog(o.sec);o.pn.setAttribute('data-s',p<.3?1:p<.7?2:3);return}
   var t=(parseFloat(getComputedStyle(o.pin).top)||0)-o.sec.getBoundingClientRect().top;
   o.F.forEach(function(f){var a=Math.round(op(t,f.v)*1000)/1000;if(a!==f.o){f.o=a;f.e.style.opacity=a}});
-  if(o.w){var sc=1+.08*cl(t/80);sc=Math.round(sc*1000)/1000;var a=Math.round((1-cl((t-600)/50))*1000)/1000;if(sc!==o.ws||a!==o.wa){o.ws=sc;o.wa=a;o.w.style.transform='scale('+sc+')';o.w.style.opacity=a}}})}
+  if(o.w){var sc=1+.08*sm(t/160);sc=Math.round(sc*1000)/1000;var a=Math.round((1-sm((t-900)/180))*1000)/1000;if(sc!==o.ws||a!==o.wa){o.ws=sc;o.wa=a;o.w.style.transform='scale('+sc+')';o.w.style.opacity=a}}})}
 function req(){if(!tk){tk=true;requestAnimationFrame(loop)}}
 addEventListener('scroll',req,{passive:true});addEventListener('resize',req);addEventListener('orientationchange',req);req();})();
 (function(){document.querySelectorAll('.u0-l').forEach(function(l){var pv=l.querySelector('.u0-pv');if(!pv)return;var ims=pv.querySelectorAll('img');
