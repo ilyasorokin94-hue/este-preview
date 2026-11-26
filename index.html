@@ -245,6 +245,13 @@ body{margin:0;background:#352B25;color:#EBE0D0;font:300 14px/1.45 'Jost','Centur
   .f1k h3{font-size:19px}
   .f1k p,.f1k article:hover p{max-height:none;opacity:1;margin-top:7px;font-size:14.5px;line-height:1.42;color:var(--ink)}
 }
+.f1k-hand{display:none}
+@keyframes f1kSw{0%{transform:translateX(0)}45%{transform:translateX(-20px);animation-timing-function:ease-in}70%{transform:translateX(0)}80%{transform:translateX(-5px)}90%{transform:translateX(0)}95%{transform:translateX(-2px)}100%{transform:translateX(0)}}
+@container mk (max-width:1040px){
+  .mk .head.f1k-h{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:16px}.f1k-h .h2{min-width:0}
+  .f1k-hand{display:block;flex:none;width:30px;height:44px;margin-right:6px;fill:none;stroke:var(--tint);stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;animation:f1kSw 2s cubic-bezier(.2,.7,.3,1) infinite}
+}
+@media (prefers-reduced-motion:reduce){.f1k-hand{animation:none}}
 /* 02 О бренде */
 .mk.pin:has(>.bs){padding-block:0}
 .bs{height:270vh}
@@ -267,32 +274,34 @@ body{margin:0;background:#352B25;color:#EBE0D0;font:300 14px/1.45 'Jost','Centur
 .bs-panel[data-s="2"] .bs-ph.a,.bs-panel[data-s="2"] .bs-ph.b{opacity:1;transform:none}
 .bs-mph,.bs-mid{display:contents}
 .bs-mph{display:none}
+.bsm{display:none}
 @container mk (max-width:700px){
-  /* Телефон: панель закреплена под шапкой, внутри неё три экрана стоят друг под другом лентой.
-     Прокрутка страницы двигает ленту (один transform, без смены видимости), между экранами есть паузы,
-     движение сглаживается в requestAnimationFrame, поэтому на iOS и Android нет рывков и пустых кадров */
+  /* Телефон, по механике Delfi: панель закреплена под шапкой примерно на 1150px прокрутки.
+     Всё стоит на своих местах, двигается только прозрачность (и лёгкий масштаб логотипа),
+     и она привязана к прокрутке напрямую, без задержек и анимаций по времени.
+     Сначала один логотип, затем по очереди подпись, текст и два фото; короткая смена на вторую композицию,
+     которая так же собирается по элементам, и только потом панель уезжает вверх */
   .mk.pin:has(>.bs){padding-block:12px}
-  .bs{height:340vh;height:340svh}
+  .bs{height:auto}.bs::after{content:"";display:block;height:1150px}
   .bs-pin{position:sticky;top:calc(env(safe-area-inset-top,0px) + 66px)}
-  .bs-panel{height:calc(100vh - 90px);height:calc(100svh - 84px - env(safe-area-inset-top,0px));min-height:420px;max-height:760px;padding:0}
-  .bs-ph{display:none!important}
-  .bs-panel{contain:paint;-webkit-mask-image:-webkit-radial-gradient(white,black)}
-  .bs-state,.bs-panel .bs-state{padding:0 22px;transition:none;opacity:1;pointer-events:auto;transform:translate3d(0,0,0);will-change:transform;backface-visibility:hidden}
-  .bs .s2{top:100%;bottom:-100%}.bs .s3{top:200%;bottom:-200%}
-  .bs .s2,.bs .s3{justify-content:space-between;gap:12px;padding:18px 22px}
-  .bs-mid{display:flex;flex-direction:column;align-items:center;flex:none}
-  .bs-mph{display:block;flex:0 1 auto;width:74%;height:auto;aspect-ratio:1.55;min-height:72px;object-fit:cover;border-radius:4px}
-  .bs .s1 .logo{width:58cqi}
-  .bs .s2 .logo{width:62cqi;margin:10px 0 12px}
-  .bs .s2 .cap{font-size:12px;letter-spacing:.12em}
-  .bs-state .txt{font-size:15px;line-height:1.5;max-width:22em}
-  .bs .s3 .cap{font-size:12px}
-  .bs .slogan{font-size:8.4cqi;line-height:1.08;margin:8px 0 12px}
-  .bs .s3 .txt{font-size:15px}
+  .bs-panel{height:calc(100vh - 90px);height:calc(100svh - 84px - env(safe-area-inset-top,0px));min-height:440px;max-height:780px;padding:0;contain:paint}
+  .bs-ph,.bs-state{display:none!important}
+  .bsm{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:clamp(18px,4svh,34px) 0}
+  .bsm-s{position:relative;flex:none;width:62%;aspect-ratio:1.75;max-height:20svh}
+  .bsm-s img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:4px}
+  .bsm-c{display:grid;place-items:center;flex:1 1 auto;width:100%;padding:12px 26px;text-align:center}
+  .bsm-c>div{grid-area:1/1;display:flex;flex-direction:column;align-items:center}
+  .bsm [data-f]{opacity:0;will-change:opacity}
+  .bsm .w{opacity:1;will-change:opacity,transform}
+  .bsm .cap{font-size:12px;letter-spacing:.12em}
+  .bsm .logo{width:62cqi;margin:14px 0 22px;color:var(--ink)}
+  .bsm .txt{font-size:15px;line-height:1.5;max-width:22em}
+  .bsm .slogan{max-width:12em;font:300 8.4cqi/1.08 var(--sans);letter-spacing:.02em;text-transform:uppercase;text-wrap:balance;margin:10px 0 14px}
 }
-@media (max-height:640px) and (max-width:700px){
-  .bs .slogan{font-size:7.4cqi}
-  .bs-state .txt,.bs .s3 .txt{font-size:14.5px;line-height:1.42}
+@media (max-height:700px) and (max-width:700px){
+  .bsm .txt{font-size:14px;line-height:1.42}
+  .bsm .slogan{font-size:7.4cqi}
+  .bsm .logo{width:58cqi;margin:10px 0 18px}
 }
 /* 03 Главный врач */
 .c4a{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:var(--gap);align-items:end;min-height:clamp(460px,50cqi,760px)}
@@ -556,7 +565,7 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
   .rA-c:nth-child(3n+2){background:var(--tint) var(--speck)}
   .rA-c blockquote{margin:0;font:400 27px/1.2 var(--serif);text-wrap:pretty}
   .rA-c.drag{transition:none}
-  .rA-ft{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .rA-ft{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:22px}
   .rA-ft p{max-width:13em;font-size:14px;line-height:1.35;color:var(--on-soft)}
 
   /* B: истории */
@@ -879,7 +888,7 @@ img.hero-vid{object-fit:cover}
 </div></section>
 
 <section class="fr" id="osobennosti" aria-label="Особенности клиники"><div class="mk">
-<div class="head"><h2 class="h2">Особенности клиники</h2><p class="txt f1k-hint">Наведите на карту, чтобы прочитать подробнее</p></div>
+<div class="head f1k-h"><h2 class="h2">Особенности клиники</h2><svg class="f1k-hand" viewBox="0 0 28 41" aria-hidden="true"><path d="M9 21V5.5a2 2 0 0 1 4 0V18M13 14.5a2 2 0 0 1 4 0V19M17 16a2 2 0 0 1 4 0V20M21 18a2 2 0 0 1 4 0v8c0 4-2.5 7-6 7h-6c-2.5 0-4-1.2-5.2-3L3.3 24.5a1.8 1.8 0 0 1 2.8-2.2L9 25M10.5 35.5h12v4h-12z"/></svg><p class="txt f1k-hint">Наведите на карту, чтобы прочитать подробнее</p></div>
 <div class="f1k msw t" data-msw>
   <article tabindex="0" style="--a:-3.4deg;--y:16px"><div><h3>Цифровой план</h3><p>Будущую улыбку видно на 3D-модели до начала лечения</p></div><img loading="lazy" decoding="async" src="assets/f-plan.jpg" alt=""></article>
   <article tabindex="0" style="--a:-2deg;--y:7px"><div><h3>Лечение под микроскопом</h3><p>Увеличение помогает сохранить зуб и точно пролечить каналы</p></div><img loading="lazy" decoding="async" src="assets/f-micro.jpg" alt=""></article>
@@ -896,6 +905,14 @@ img.hero-vid{object-fit:cover}
     <div class="bs-panel paper" data-s="1">
       <img loading="lazy" decoding="async" class="bs-ph a" src="assets/cabinet-reeded.jpg" alt="Кабинет ÉSTÉ">
       <img loading="lazy" decoding="async" class="bs-ph b" src="assets/cabinet-wide.jpg" alt="Кабинет ÉSTÉ">
+      <div class="bsm">
+        <div class="bsm-s"><img loading="lazy" decoding="async" data-f="400,500,600,650" src="assets/cabinet-reeded.jpg" alt="Кабинет ÉSTÉ"><img loading="lazy" decoding="async" data-f="950,1050" src="assets/reception-wide.jpg" alt="Ресепшен ÉSTÉ" loading="lazy"></div>
+        <div class="bsm-c">
+          <div><p class="cap" data-f="100,200,600,650">Стоматология эстетики в Москве</p><svg class="logo w" viewBox="13 -192 657 197" role="img" aria-label="ÉSTÉ"><use href="#este-word"/></svg><p class="txt" data-f="200,300,600,650">Мы относимся к эстетике как к искусству. Оттенок, форму и игру света на эмали врач подбирает под ваше лицо, а здоровье зубов остаётся основой, на которой держится красота</p></div>
+          <div><p class="cap" data-f="650,750">ÉSTÉ</p><p class="slogan" data-f="750,850">Там, где медицина становится искусством</p><p class="txt" data-f="850,950">Мы врачи, художники и реставраторы, которые подходят к делу с улыбкой</p></div>
+        </div>
+        <div class="bsm-s"><img loading="lazy" decoding="async" data-f="400,500,600,650" src="assets/cabinet-wide.jpg" alt="Кабинет ÉSTÉ"><img loading="lazy" decoding="async" data-f="950,1050" src="assets/cabinet-marble.jpg" alt="Кабинет ÉSTÉ" loading="lazy"></div>
+      </div>
       <div class="bs-state s1" aria-hidden="true"><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg></div>
       <div class="bs-state s2">
         <img loading="lazy" decoding="async" class="bs-mph t" src="assets/cabinet-reeded.jpg" alt="" aria-hidden="true">
@@ -1054,7 +1071,7 @@ img.hero-vid{object-fit:cover}
 
 <section class="fr" id="voprosy" aria-label="Вопросы и ответы"><div class="mk">
 <div class="q19a q19">
-  <div class="q19a-t"><h2 class="h2">Вопросы и ответы</h2><p class="txt">Собрали то, что чаще всего спрашивают на первой консультации</p><a class="pill" href="#kontakty" data-ph="Ссылку на Telegram дать после сверки с клиникой"><span>Задать свой вопрос</span><i><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></i></a><small>ответим в Telegram или по телефону</small></div>
+  <div class="q19a-t"><h2 class="h2">Вопросы и ответы</h2><p class="txt">Собрали то, что чаще всего спрашивают на первой консультации</p><a class="pill" href="#kontakty" data-ph="Ссылку на Telegram дать после сверки с клиникой"><span>Задать свой вопрос</span></a><small>ответим в Telegram или по телефону</small></div>
   <div class="q19a-l">
     <details><summary><span><small>виниры</small>Нужно ли обтачивать зубы под виниры?</span><i class="pm"></i></summary><p>Зависит от исходной формы и положения зубов. Сначала мы делаем цифровую модель будущей улыбки и примеряем её на зубах, а объём обработки врач показывает до начала работы.</p></details>
     <details><summary><span><small>ортодонтия</small>Что выбрать: элайнеры или брекеты?</span><i class="pm"></i></summary><p>Обе системы выравнивают зубы, различаются показания и образ жизни с ними. Ортодонт смотрит снимки и скан, после этого называет подходящий вариант, срок и стоимость.</p></details>
@@ -1455,18 +1472,18 @@ renderMenu();renderU();renderR();
 })();
 (function(){var bss=document.querySelectorAll('.bs'),tk=false;
 function cl(x){return x<0?0:x>1?1:x}
-function es(x){x=cl(x);return .5-.5*Math.cos(Math.PI*x)}
-/* ход ленты по прогрессу прокрутки: короткие паузы на каждом экране и плавные переходы между ними */
-function pos(p){return p<.12?0:p<.44?es((p-.12)/.32):p<.56?1:p<.88?1+es((p-.56)/.32):2}
-var S=[];bss.forEach(function(sec){var pn=sec.querySelector('.bs-panel');S.push({sec:sec,pn:pn,st:pn.querySelectorAll('.bs-state'),cur:null,tg:0,ph:false})});
 function prog(sec){var r=sec.getBoundingClientRect(),total=r.height-innerHeight;return total>0?cl((-r.top+innerHeight*.35)/(total+innerHeight*.35)):1}
-function paint(o){var h=o.pn.clientHeight,y=-o.cur*h;o.st.forEach(function(e,i){var d=Math.min(1,Math.abs(o.cur-i));e.style.transform='translate3d(0,'+y.toFixed(2)+'px,0)';e.style.opacity=(1-.55*d).toFixed(3)})}
-function loop(){tk=false;var more=false;S.forEach(function(o){
-  var ph=o.sec.clientWidth<=760,p=prog(o.sec);o.pn.setAttribute('data-s',p<.3?1:p<.7?2:3);
-  if(!ph){if(o.ph){o.st.forEach(function(e){e.style.transform=e.style.opacity=''});o.ph=false;o.cur=null}return}
-  o.ph=true;o.tg=pos(p);if(o.cur===null)o.cur=o.tg;
-  var dlt=o.tg-o.cur;o.cur=Math.abs(dlt)<.0008?o.tg:o.cur+dlt*.2;paint(o);if(o.cur!==o.tg)more=true});
-  if(more)req()}
+var S=[];bss.forEach(function(sec){var pn=sec.querySelector('.bs-panel'),pin=sec.querySelector('.bs-pin');
+  var F=[].map.call(sec.querySelectorAll('.bsm [data-f]'),function(e){var v=e.getAttribute('data-f').split(',').map(Number);return {e:e,v:v,o:-1}});
+  S.push({sec:sec,pn:pn,pin:pin,F:F,w:sec.querySelector('.bsm .w'),ws:-1})});
+/* прозрачность по пикселям прокрутки от начала закрепления: [появление от, до, исчезновение от, до] */
+function op(t,v){var a=cl((t-v[0])/(v[1]-v[0]));if(v.length>2)a*=1-cl((t-v[2])/(v[3]-v[2]));return a}
+function loop(){tk=false;S.forEach(function(o){
+  var ph=o.sec.clientWidth<=760;
+  if(!ph){var p=prog(o.sec);o.pn.setAttribute('data-s',p<.3?1:p<.7?2:3);return}
+  var t=(parseFloat(getComputedStyle(o.pin).top)||0)-o.sec.getBoundingClientRect().top;
+  o.F.forEach(function(f){var a=Math.round(op(t,f.v)*1000)/1000;if(a!==f.o){f.o=a;f.e.style.opacity=a}});
+  if(o.w){var sc=1+.08*cl(t/80);sc=Math.round(sc*1000)/1000;var a=Math.round((1-cl((t-600)/50))*1000)/1000;if(sc!==o.ws||a!==o.wa){o.ws=sc;o.wa=a;o.w.style.transform='scale('+sc+')';o.w.style.opacity=a}}})}
 function req(){if(!tk){tk=true;requestAnimationFrame(loop)}}
 addEventListener('scroll',req,{passive:true});addEventListener('resize',req);addEventListener('orientationchange',req);req();})();
 (function(){document.querySelectorAll('.u0-l').forEach(function(l){var pv=l.querySelector('.u0-pv');if(!pv)return;var ims=pv.querySelectorAll('img');
