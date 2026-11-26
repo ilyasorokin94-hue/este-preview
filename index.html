@@ -171,14 +171,14 @@ body{margin:0;background:#352B25;color:#EBE0D0;font:300 14px/1.45 'Jost','Centur
 .mk .mdots{display:none}
 @keyframes mnudge{0%,100%{transform:none}50%{transform:translateX(5px)}}
 @container mk (max-width:700px){
-  .mk{font-size:14px;--gap:12px}
+  .mk{font-size:15px;--gap:12px}
   .mk .h2{font-size:clamp(24px,7.2cqi,31px);line-height:1.1}
-  .mk .txt{font-size:14px;line-height:1.5}
-  .mk .cap{font-size:13.5px}
+  .mk .txt{font-size:15.5px;line-height:1.55}
+  .mk .cap{font-size:14px}
   .mk .tag{height:28px;font-size:11.5px}
   .mk .m-only{display:revert}
   .mk .d-only{display:none!important}
-  .mk .pill{height:50px;font-size:clamp(13px,3.6cqi,14px);padding-left:clamp(16px,5.4cqi,22px);gap:10px}
+  .mk .pill{height:52px;font-size:clamp(14px,3.9cqi,15px);padding-left:clamp(16px,5.4cqi,22px);gap:10px}
   .mk .pill>span{min-width:0;overflow:hidden;text-overflow:ellipsis}
   .mk .pill i{width:38px}
   .mk .arrows .rnd{width:44px}
@@ -241,7 +241,7 @@ body{margin:0;background:#352B25;color:#EBE0D0;font:300 14px/1.45 'Jost','Centur
   .f1k article:hover,.f1k article:focus-visible{transform:none;flex-grow:0}
   .f1k article::after{background:linear-gradient(0deg,rgba(244,238,228,.98),rgba(244,238,228,.9) 30%,rgba(244,238,228,0) 56%)}
   .f1k h3{font-size:19px}
-  .f1k p,.f1k article:hover p{max-height:none;opacity:1;margin-top:8px;font-size:14px;color:var(--ink-soft)}
+  .f1k p,.f1k article:hover p{max-height:none;opacity:1;margin-top:8px;font-size:15px;line-height:1.45;color:var(--ink-soft)}
 }
 /* 02 О бренде */
 .mk.pin:has(>.bs){padding-block:0}
@@ -276,6 +276,7 @@ body{margin:0;background:#352B25;color:#EBE0D0;font:300 14px/1.45 'Jost','Centur
   .bs .s2 .logo{width:62cqi;margin:14px 0 16px}
   .bs .slogan{font-size:9.4cqi;line-height:1.08;margin:10px 0 16px}
   .bs .s3 .txt{font-size:16px}
+  .bs-state .txt{font-size:15.5px;line-height:1.55}
 }
 /* 03 Главный врач */
 .c4a{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:var(--gap);align-items:end;min-height:clamp(460px,50cqi,760px)}
@@ -368,22 +369,22 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
 @container mk (max-width:700px){
   .u0-g .u0-c{width:72cqi}
   .u0-c h3{font-size:20px}
-  .u0-r{grid-template-columns:minmax(0,1fr) auto;row-gap:6px}
-  .u0-r h3{font-size:20px;color:var(--on)}
-  .u0-r small{grid-row:2;grid-column:1}
-  .u0-r b{grid-row:2;grid-column:2;font-size:17px}
-  .u0-r .u0-x{grid-row:1/3;grid-column:3;align-self:center}
-  .u0-r{grid-template-columns:minmax(0,1fr) auto 52px}
-  .mk .u0-x .u0-th{width:52px}
-  html.uv-A .u0-r{grid-template-columns:minmax(0,1fr) auto}
+  .u0-c small{font-size:15px}
+  .u0-p{font-size:13px!important}
+  .u0-r{grid-template-columns:minmax(0,1fr) 56px;column-gap:16px;row-gap:6px;padding:18px 0}
+  .u0-r h3{grid-row:1;grid-column:1;font-size:21px;line-height:1.15;color:var(--on)}
+  .u0-r small{grid-row:2;grid-column:1;font-size:15.5px;line-height:1.45}
+  .u0-r b{grid-row:3;grid-column:1;justify-self:start;text-align:left;font-size:18px;margin-top:4px}
+  .u0-r .u0-x{grid-row:1/4;grid-column:2;align-self:center;justify-content:flex-end}
+  .mk .u0-x .u0-th{width:56px}
+  html.uv-A .u0-r{grid-template-columns:minmax(0,1fr)}
   html.uv-B .u0-r,html.uv-C .u0-r{grid-template-columns:minmax(0,1fr) auto}
-  html.uv-B .u0-r .u0-x,html.uv-C .u0-r .u0-x{grid-row:1;grid-column:2}
+  html.uv-B .u0-r .u0-x,html.uv-C .u0-r .u0-x{grid-row:1;align-self:start;padding-top:6px}
   html.uv-B .mk .u0-x .u0-ln{width:30px}
-  html.uv-C .mk .u0-x .u0-more{font-size:11px;letter-spacing:.14em}
-  html.uv-E .u0-r{grid-template-columns:2.2em minmax(0,1fr) auto}
-  html.uv-E .u0-n{grid-row:1;grid-column:1}
-  html.uv-E .u0-r h3,html.uv-E .u0-r small{grid-column:2}
-  html.uv-E .u0-r b{grid-column:3}
+  html.uv-C .mk .u0-x .u0-more{font-size:11.5px;letter-spacing:.14em}
+  html.uv-E .u0-r{grid-template-columns:2.4em minmax(0,1fr)}
+  html.uv-E .u0-n{grid-row:1;grid-column:1;align-self:start;padding-top:5px}
+  html.uv-E .u0-r h3,html.uv-E .u0-r small,html.uv-E .u0-r b{grid-column:2}
   html.uv-E .u0-pv{display:none}
   html.uv-E .u0-r:hover h3{transform:none}
 }
@@ -453,8 +454,8 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
   .k13d-w>span{width:68px;height:68px}.k13d-w b{font-size:19px}.k13d-w small{font-size:19px}
   .k13d-g{border-top:0}
   .k13d-c,.k13d-c:first-child,.k13d-c:last-child,.k13d-c+.k13d-c{width:84cqi;padding:14px 14px 0;border:1px solid var(--line);border-radius:var(--r)}
-  .k13d-p p{font-size:14px}
-  .k13d-p .tg{font-size:10.5px}
+  .k13d-p p{font-size:15px}
+  .k13d-p .tg{font-size:11.5px}
 }
 /* 07 Отзывы */
 .n14d{padding:var(--vs,clamp(40px,6cqi,96px)) 0}
@@ -485,8 +486,8 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
   .n14d-marq article{width:78cqi;scroll-snap-align:start}
   .n14d-marq article.num{width:46cqi}
   .n14d-marq article p{font-size:19px}
-  .n14d-marq article footer{font-size:13px}
-  .n14d-marq article header{font-size:11.5px}
+  .n14d-marq article footer{font-size:14px}
+  .n14d-marq article header{font-size:12.5px}
   .n14d-h p{font-size:14px}
   .n14d .mdots{padding-inline:var(--pad);margin:12px 0 22px}
   }
@@ -565,7 +566,7 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
 .q19a-l summary small{display:block;margin-bottom:6px;font:400 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--on-soft)}
 .q19a-l details p{max-width:36em;padding:0 50px clamp(16px,2cqi,26px) 0;font-size:clamp(13.5px,1.08cqi,16px);line-height:1.55;color:var(--on-soft)}
 @container mk (min-width:701px){.q19a-t{position:sticky;top:90px}}
-@container mk (max-width:700px){.q19a{grid-template-columns:1fr}.q19a-l details p{padding-right:0;font-size:14.5px}.q19a-l summary{padding:16px 0}.q19a-l summary span{font-size:20px}.q19a-l summary small{font-size:11.5px}.q19 .pm{width:36px}}
+@container mk (max-width:700px){.q19a{grid-template-columns:1fr}.q19a-l details p{padding-right:0;font-size:15.5px;line-height:1.55}.q19a-l summary{padding:16px 0}.q19a-l summary span{font-size:20px}.q19a-l summary small{font-size:11.5px}.q19 .pm{width:36px}}
 /* 12 Контакты */
 .n19b{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(18px,3cqi,56px);align-items:center}
 .n19b-t p{max-width:24em;margin:14px 0 clamp(16px,2cqi,32px)}
@@ -608,7 +609,7 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
 .n20d .lg{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;margin-top:clamp(14px,2cqi,32px);padding-top:14px;border-top:1px solid var(--line)}
 @media (pointer:coarse){.n20d-r nav a,.n20d-r>a.t{display:inline-flex;align-items:center;min-height:44px}}
 @container mk (max-width:1040px){.n20d-r{grid-template-columns:auto minmax(0,1fr) auto}.n20d-r nav{grid-column:1 / -1;grid-row:2}}
-@container mk (max-width:700px){.n20d-r{grid-template-columns:minmax(0,1fr) auto}.n20d-r>a.t{grid-column:1;grid-row:2}.n20d-up{grid-column:2;grid-row:1 / 3}.n20d-r nav{grid-row:3;gap:0 18px;font-size:13px}.n20d-r nav a{display:inline-flex;align-items:center;min-height:44px}.n20d-r>a.t{display:inline-flex;align-items:center;min-height:44px;font-size:22px}.n20 .lg{font-size:12.5px}.n20d{padding-bottom:64px}}
+@container mk (max-width:700px){.n20d-r{grid-template-columns:minmax(0,1fr) auto}.n20d-r>a.t{grid-column:1;grid-row:2}.n20d-up{grid-column:2;grid-row:1 / 3}.n20d-r nav{grid-row:3;gap:0 18px;font-size:14px}.n20d-r nav a{display:inline-flex;align-items:center;min-height:44px}.n20d-r>a.t{display:inline-flex;align-items:center;min-height:44px;font-size:22px}.n20 .lg{font-size:13.5px;line-height:1.5}.n20d{padding-bottom:64px}}
 
 /* Оболочка страницы: меню и плавающие кнопки */
 .ui button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
@@ -912,7 +913,7 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
 <section class="fr" id="kontakty" aria-label="Контакты"><div class="mk">
 <div class="n19b">
   <div class="n19b-t">
-    <h2 class="h2">Приходите познакомиться</h2>
+    <h2 class="h2">Как нас найти</h2>
     <p class="txt"><span class="d-only">Наведите камеру телефона на код, откроется карточка клиники в Яндекс Картах с маршрутом</span><span class="m-only">Нажмите на визитку, откроется карточка клиники в Яндекс Картах с маршрутом</span></p>
     <div><a class="pill cream" href="tel:+79060758938"><span>Позвонить</span><i><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5h3c.5 0 .9.3 1 .8l.9 3.3c.1.4 0 .8-.3 1.1L8.3 10.2a11 11 0 0 0 5.5 5.5l1.5-1.5c.3-.3.7-.4 1.1-.3l3.3.9c.5.1.8.5.8 1v3c0 .9-.8 1.7-1.7 1.7C10.6 20.5 3.5 13.4 3.5 5.2c0-.9.8-1.7 1.7-1.7Z"/></svg></i></a><a class="pill" href="#kontakty" data-ph="Ссылку на Telegram дать после сверки с клиникой"><span>Написать в Telegram</span><i><svg class="ic f" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M21.6 4.2 2.9 11.4c-1 .4-1 1.1-.1 1.4l4.7 1.5 1.8 5.5c.2.7.7.8 1.2.3l2.6-2.4 4.6 3.4c.8.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.3-1.5ZM9 14.1l8.4-5.3c.4-.2.7 0 .4.3l-6.9 6.3-.3 3-1.6-4.3Z"/></svg></i></a></div>
   </div>
@@ -1083,7 +1084,7 @@ html.mv-E .vsw{bottom:calc(env(safe-area-inset-bottom,0px) + 22px)}
 .vsw-ph[aria-pressed=true] i{background:#F3DDB0}.vsw-ph[aria-pressed=true] i::after{transform:translateX(14px);background:#2b211c}
 /* старый переключатель заглушек и прежнее окно меню уходят в панель вариантов */
 .ui .phsw{display:none}
-@media (max-width:820px){.vsw-b{height:40px;padding:0 14px;font-size:12.5px}.vsw-p{bottom:50px}}
+@media (max-width:820px){.vsw{left:max(16px,env(safe-area-inset-left,0px));transform:none}.vsw-b{height:40px;padding:0 14px;font-size:12.5px}.vsw-p{left:0;transform:none;bottom:50px;width:calc(100vw - 32px)}}
 html.mn-open .vsw{display:none}
 @media (max-width:820px){html.mv-E .h-top .h-menu{display:none}}
 </style>
