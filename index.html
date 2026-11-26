@@ -2,7 +2,7 @@
 <html lang="ru">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Главная ÉSTÉ по Delfi</title>
+<title>Стоматология эстетики ÉSTÉ в Москве</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@ body{margin:0;background:#352B25;color:#EBE0D0;font:300 14px/1.45 'Jost','Centur
 .fr{container:mk/inline-size;position:relative}
 .page{max-width:1920px;margin-inline:auto}
 
-/* Основа макетов: токены и типографика текущей главной (по образцу Delfi), размеры от ширины рамки (cqi) */
+/* Основа макетов: токены и типографика текущей главной , размеры от ширины рамки (cqi) */
 :root{
   --bg:#352B25; --bg-deep:#2A211C; --paper:#E8DFD2; --paper-hi:#F4EEE4; --tint:#E7D6BB;
   --taupe:#A39283; --taupe-hi:#D5C6B4; --mocha:#6E5E54; --dark:#473A32; --ink:#382D27; --ink-soft:#5F5148;
@@ -263,32 +263,31 @@ body{margin:0;background:#352B25;color:#EBE0D0;font:300 14px/1.45 'Jost','Centur
 .bs-ph.a{left:3.8%;top:19%}.bs-ph.b{right:3.2%;top:52%}.bs-ph.c{right:3.2%;top:19%}.bs-ph.d{left:3.8%;top:52%}
 .bs-ph.a{left:3.8%;top:14%;width:clamp(96px,15cqi,240px);aspect-ratio:3/4}.bs-ph.b{right:3.8%;top:30%;width:clamp(96px,15cqi,240px);aspect-ratio:3/4}
 .bs-panel[data-s="2"] .bs-ph.a,.bs-panel[data-s="2"] .bs-ph.b{opacity:1;transform:none}
-/* фото третьего состояния видны только на телефоне */
-.bs-ph.c,.bs-ph.d{display:none}
+.bs-mph,.bs-mid{display:contents}
+.bs-mph{display:none}
 @container mk (max-width:700px){
-  /* Телефон как у Delfi: панель закреплена под шапкой во весь экран, при прокрутке в ней сменяются
-     знак, текст о клинике с двумя кадрами сверху и снизу, затем слоган с другой парой кадров */
+  /* Телефон: панель закреплена под шапкой, состояния сменяются вслед за пальцем:
+     уходящее гаснет и сдвигается вверх, затем снизу проявляется следующее, кадры слегка плывут навстречу тексту */
   .mk.pin:has(>.bs){padding-block:12px}
-  .bs{height:330vh;height:330svh}
+  .bs{height:340vh;height:340svh}
   .bs-pin{position:sticky;top:calc(env(safe-area-inset-top,0px) + 66px)}
-  .bs-panel{height:calc(100vh - 90px);height:calc(100svh - 90px - env(safe-area-inset-top,0px));min-height:440px;max-height:760px;padding:0}
-  .bs-state{padding:0 22px}
+  .bs-panel{height:calc(100vh - 90px);height:calc(100svh - 84px - env(safe-area-inset-top,0px));min-height:420px;max-height:760px;padding:0}
+  .bs-ph{display:none!important}
+  .bs-state{padding:0 22px;transition:none;will-change:opacity,transform;transform:translate3d(0,0,0)}
+  .bs .s2,.bs .s3{justify-content:space-between;gap:12px;padding:18px 22px}
+  .bs-mid{display:flex;flex-direction:column;align-items:center;flex:none}
+  .bs-mph{display:block;flex:0 1 auto;width:74%;height:auto;aspect-ratio:1.55;min-height:72px;object-fit:cover;border-radius:4px;filter:grayscale(.12);will-change:transform}
   .bs .s1 .logo{width:58cqi}
-  .bs .s2 .logo{width:64cqi;margin:12px 0 14px}
+  .bs .s2 .logo{width:62cqi;margin:10px 0 12px}
   .bs .s2 .cap{font-size:12px;letter-spacing:.12em}
   .bs-state .txt{font-size:15px;line-height:1.5;max-width:22em}
-  .bs .s3{padding-inline:22px}
   .bs .s3 .cap{font-size:12px}
-  .bs .slogan{font-size:8.6cqi;line-height:1.08;margin:10px 0 14px}
+  .bs .slogan{font-size:8.4cqi;line-height:1.08;margin:8px 0 12px}
   .bs .s3 .txt{font-size:15px}
-  .bs-ph,.bs-ph.a,.bs-ph.b,.bs-ph.c,.bs-ph.d{display:block;position:absolute;left:50%;right:auto;width:68%;aspect-ratio:1.55;object-fit:cover;border-radius:4px;opacity:0;transform:translateX(-50%) scale(.96);filter:grayscale(.15)}
-  .bs-ph.a,.bs-ph.c{top:4.5%}
-  .bs-ph.b,.bs-ph.d{top:auto;bottom:4.5%}
-  .bs-panel[data-s="2"] .bs-ph.a,.bs-panel[data-s="2"] .bs-ph.b,.bs-panel[data-s="3"] .bs-ph.c,.bs-panel[data-s="3"] .bs-ph.d{opacity:1;transform:translateX(-50%)}
 }
-@media (max-height:700px) and (max-width:700px){
-  .bs-ph,.bs-ph.a,.bs-ph.b,.bs-ph.c,.bs-ph.d{width:44%}
-  .bs .slogan{font-size:7.6cqi}
+@media (max-height:640px) and (max-width:700px){
+  .bs .slogan{font-size:7.4cqi}
+  .bs-state .txt,.bs .s3 .txt{font-size:14.5px;line-height:1.42}
 }
 /* 03 Главный врач */
 .c4a{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:var(--gap);align-items:end;min-height:clamp(460px,50cqi,760px)}
@@ -400,7 +399,7 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
   html.uv-E .u0-pv{display:none}
   html.uv-E .u0-r:hover h3{transform:none}
 }
-.u0-m,.mk .u0-mz{display:none}
+.u0-m,.u0-ml,.mk .u0-mz{display:none}
 @container mk (max-width:700px){
   /* Телефон как у Smartmed: широкая карточка, сетка 2 колонки из высоких фото, внизу запись */
   .u0-g,.u0-g+.mdots,.u0-l{display:none!important}
@@ -415,6 +414,13 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
   .u0-mr{position:absolute;top:10px;right:10px;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--dark);color:var(--paper-hi)}
   .u0-mc.w .u0-mr{top:14px;right:14px;width:42px;height:42px}
   .u0-mr svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.4}
+  .u0-ml{display:block;margin-top:18px;border-top:1px solid var(--line)}
+  .u0-mi{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;column-gap:16px;padding:17px 0;border-bottom:1px solid var(--line);color:var(--on)}
+  .u0-mi h3{font:300 20px/1.18 var(--sans);letter-spacing:.01em}
+  .u0-mi small{display:block;margin-top:5px;font-size:14.5px;line-height:1.42;color:var(--on-soft)}
+  .u0-mi b{display:block;margin-top:7px;font:400 17px/1 var(--serif);color:var(--glow)}
+  .u0-ml .u0-mr{position:static;width:44px;height:44px;background:var(--paper-hi);color:var(--ink);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .u0-mi:active .u0-mr{transform:rotate(45deg) scale(.94)}
   .mk .u0-mz{display:flex;width:100%;margin-top:16px;height:56px;font-size:16px}
 }
 /* 05 Команда */
@@ -455,7 +461,7 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
   .tE{overflow:clip}
   .mk .tE-row{display:flex;flex-direction:column;align-items:center;gap:44px;margin:0;padding:92px 0 28px}
   .mk .tE-row>article{position:sticky;top:calc(env(safe-area-inset-top,0px) + 150px + var(--i) * 20px);width:max(228px,min(76cqi,calc((100svh - 330px) / 1.08)));margin-top:0;transform:rotate(calc(var(--a) * .4)) scale(var(--k,1));transform-origin:50% 0;transition:none}
-  .mk .tE-row>article.c{order:-1}
+  .mk .tE-row>article{order:var(--i);z-index:calc(var(--i) + 1)}
   .mk .tE-row>article:not(.c) .tE-s{display:none}
   .mk .tE-row>article .tE-b{filter:brightness(var(--l,1));box-shadow:0 2px 3px rgba(56,45,39,.2),0 -10px 30px -14px rgba(56,45,39,.35),0 18px 30px -14px rgba(56,45,39,.5)}
   .tE-s{width:150px}
@@ -511,7 +517,8 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
 .n14d-marq.hold>div{animation-play-state:paused}
 @container mk (max-width:700px){
   .n14d-marq{overflow:hidden;-webkit-mask-image:none;mask-image:none;margin-bottom:12px;padding-inline:var(--pad)}
-  .n14d-marq>div{animation:none;padding-right:12px;gap:12px;transform:translate3d(var(--x,0px),0,0);will-change:transform}
+  .n14d-marq>div{animation:none;padding-right:12px;gap:12px;will-change:transform}
+  .n14d-marq{touch-action:pan-y}
   .n14d-marq article{width:76cqi}
   .n14d-marq article.num{width:46cqi}
   .n14d-marq article p{font-size:19px}
@@ -724,6 +731,9 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
   .fl-tg{height:58px;min-width:58px}.fl-tg i{width:56px}.fl-up{display:none}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fl-tg,.fl-tg svg{animation:none}}
+/* видео всегда само: без системной кнопки iOS, при запрете автозапуска виден кадр-постер */
+video::-webkit-media-controls,video::-webkit-media-controls-start-playback-button,video::-webkit-media-controls-overlay-play-button,video::-webkit-media-controls-panel{display:none!important;-webkit-appearance:none;opacity:0!important}
+video{pointer-events:none}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><g id="este-word"><path d="M21.741064453125002 0.0H90.77294921875V-8.68212890625H21.741064453125002ZM21.741064453125002 -131.31787109375H90.77294921875V-140.0H21.741064453125002ZM21.741064453125002 -72.5998046875H86.77294921875V-81.28193359375001H21.741064453125002ZM17.04541015625 -140.0V0.0H26.309375000000003V-140.0Z M214.60927734375002 -39.891015625 206.968115234375 -35.186279296875Q210.0 -25.359033203125 215.88869628906252 -16.8931396484375Q221.77739257812502 -8.42724609375 230.85014648437502 -3.3181640625Q239.92290039062502 1.79091796875 252.15922851562502 1.79091796875Q260.87285156250005 1.79091796875 268.1546875 -0.9568115234375001Q275.4365234375 -3.7045410156250003 280.80473632812505 -8.695458984375Q286.17294921875003 -13.686376953125 289.15024414062503 -20.615942382812502Q292.12753906250003 -27.545507812500002 292.12753906250003 -35.9091796875Q292.12753906250003 -45.091015625000004 288.9888916015625 -51.7296630859375Q285.850244140625 -58.368310546875 280.75932617187505 -63.1114990234375Q275.668408203125 -67.8546875 269.52067871093755 -71.0546875Q263.37294921875 -74.2546875 257.45932617187503 -76.46376953125001Q246.51381835937502 -80.4546875 238.786572265625 -84.96376953125001Q231.059326171875 -89.47285156250001 227.013916015625 -95.36599121093751Q222.968505859375 -101.259130859375 222.968505859375 -109.46357421875001Q222.968505859375 -119.81796875 229.9979736328125 -126.31110839843751Q237.02744140625 -132.80424804687502 249.577392578125 -132.80424804687502Q258.92734375000003 -132.80424804687502 265.30686035156253 -129.290625Q271.68637695312503 -125.77700195312501 275.79091796875 -120.46337890625Q279.895458984375 -115.149755859375 282.077294921875 -109.74067382812501L290.195751953125 -114.16811523437501Q287.632080078125 -120.731787109375 282.3638671875 -127.0658935546875Q277.095654296875 -133.4 269.118359375 -137.595458984375Q261.141064453125 -141.79091796875 250.0546875 -141.79091796875Q239.404638671875 -141.79091796875 231.0932373046875 -137.613623046875Q222.7818359375 -133.43632812500002 218.05227050781252 -125.91584472656251Q213.322705078125 -118.395361328125 213.322705078125 -108.41352539062501Q213.322705078125 -99.64985351562501 216.70908203125 -93.31120605468752Q220.095458984375 -86.97255859375001 225.6341064453125 -82.47255859375001Q231.17275390625002 -77.97255859375001 237.7295654296875 -74.75893554687501Q244.286376953125 -71.54531250000001 250.53178710937502 -69.222607421875Q258.53178710937505 -66.31806640625 265.89313964843757 -62.2430908203125Q273.25449218750003 -58.168115234375 277.91584472656257 -51.731787109375006Q282.57719726562505 -45.295458984375 282.57719726562505 -34.95458984375Q282.57719726562505 -22.84560546875 274.5749755859375 -14.920678710937501Q266.57275390625 -6.9957519531250005 252.44560546875002 -6.9957519531250005Q241.745703125 -6.9957519531250005 234.3616455078125 -11.4843505859375Q226.97758789062502 -15.972949218750001 222.2525634765625 -23.470629882812503Q217.5275390625 -30.968310546875003 214.60927734375002 -39.891015625Z M396.24541015625005 -131.213330078125H433.29082031250005V0.0H442.55478515625003V-131.213330078125H479.60019531250003V-140.0H396.24541015625005Z M596.341064453125 0.0H665.37294921875V-8.68212890625H596.341064453125ZM596.341064453125 -131.31787109375H665.37294921875V-140.0H596.341064453125ZM596.341064453125 -72.5998046875H661.37294921875V-81.28193359375001H596.341064453125ZM591.64541015625 -140.0V0.0H600.9093750000001V-140.0Z"/><line x1="48.2" y1="-150" x2="67" y2="-185.3" stroke="currentColor" stroke-width="8"/><line x1="622.8" y1="-150" x2="641.6" y2="-185.3" stroke="currentColor" stroke-width="8"/></g><g id="este-full"><path d="M21.741064453125002 0.0H90.77294921875V-8.68212890625H21.741064453125002ZM21.741064453125002 -131.31787109375H90.77294921875V-140.0H21.741064453125002ZM21.741064453125002 -72.5998046875H86.77294921875V-81.28193359375001H21.741064453125002ZM17.04541015625 -140.0V0.0H26.309375000000003V-140.0Z M214.60927734375002 -39.891015625 206.968115234375 -35.186279296875Q210.0 -25.359033203125 215.88869628906252 -16.8931396484375Q221.77739257812502 -8.42724609375 230.85014648437502 -3.3181640625Q239.92290039062502 1.79091796875 252.15922851562502 1.79091796875Q260.87285156250005 1.79091796875 268.1546875 -0.9568115234375001Q275.4365234375 -3.7045410156250003 280.80473632812505 -8.695458984375Q286.17294921875003 -13.686376953125 289.15024414062503 -20.615942382812502Q292.12753906250003 -27.545507812500002 292.12753906250003 -35.9091796875Q292.12753906250003 -45.091015625000004 288.9888916015625 -51.7296630859375Q285.850244140625 -58.368310546875 280.75932617187505 -63.1114990234375Q275.668408203125 -67.8546875 269.52067871093755 -71.0546875Q263.37294921875 -74.2546875 257.45932617187503 -76.46376953125001Q246.51381835937502 -80.4546875 238.786572265625 -84.96376953125001Q231.059326171875 -89.47285156250001 227.013916015625 -95.36599121093751Q222.968505859375 -101.259130859375 222.968505859375 -109.46357421875001Q222.968505859375 -119.81796875 229.9979736328125 -126.31110839843751Q237.02744140625 -132.80424804687502 249.577392578125 -132.80424804687502Q258.92734375000003 -132.80424804687502 265.30686035156253 -129.290625Q271.68637695312503 -125.77700195312501 275.79091796875 -120.46337890625Q279.895458984375 -115.149755859375 282.077294921875 -109.74067382812501L290.195751953125 -114.16811523437501Q287.632080078125 -120.731787109375 282.3638671875 -127.0658935546875Q277.095654296875 -133.4 269.118359375 -137.595458984375Q261.141064453125 -141.79091796875 250.0546875 -141.79091796875Q239.404638671875 -141.79091796875 231.0932373046875 -137.613623046875Q222.7818359375 -133.43632812500002 218.05227050781252 -125.91584472656251Q213.322705078125 -118.395361328125 213.322705078125 -108.41352539062501Q213.322705078125 -99.64985351562501 216.70908203125 -93.31120605468752Q220.095458984375 -86.97255859375001 225.6341064453125 -82.47255859375001Q231.17275390625002 -77.97255859375001 237.7295654296875 -74.75893554687501Q244.286376953125 -71.54531250000001 250.53178710937502 -69.222607421875Q258.53178710937505 -66.31806640625 265.89313964843757 -62.2430908203125Q273.25449218750003 -58.168115234375 277.91584472656257 -51.731787109375006Q282.57719726562505 -45.295458984375 282.57719726562505 -34.95458984375Q282.57719726562505 -22.84560546875 274.5749755859375 -14.920678710937501Q266.57275390625 -6.9957519531250005 252.44560546875002 -6.9957519531250005Q241.745703125 -6.9957519531250005 234.3616455078125 -11.4843505859375Q226.97758789062502 -15.972949218750001 222.2525634765625 -23.470629882812503Q217.5275390625 -30.968310546875003 214.60927734375002 -39.891015625Z M396.24541015625005 -131.213330078125H433.29082031250005V0.0H442.55478515625003V-131.213330078125H479.60019531250003V-140.0H396.24541015625005Z M596.341064453125 0.0H665.37294921875V-8.68212890625H596.341064453125ZM596.341064453125 -131.31787109375H665.37294921875V-140.0H596.341064453125ZM596.341064453125 -72.5998046875H661.37294921875V-81.28193359375001H596.341064453125ZM591.64541015625 -140.0V0.0H600.9093750000001V-140.0Z"/><path d="M2.9899999999999998 51.95Q2.9899999999999998 50.064 3.8294999999999995 48.6495Q4.669 47.235 6.026 46.43Q7.383 45.625 8.97 45.625Q10.12 45.625 11.0745 45.924Q12.029 46.223 12.811 46.7635Q13.593 47.304 14.145 48.016999999999996V45.441Q13.133 44.544 11.937 44.107Q10.741 43.67 8.97 43.67Q7.2909999999999995 43.67 5.8305 44.2795Q4.37 44.889 3.266 46.00450000000001Q2.162 47.120000000000005 1.541 48.638000000000005Q0.9199999999999999 50.156 0.9199999999999999 51.95Q0.9199999999999999 53.744 1.541 55.262Q2.162 56.78 3.266 57.8955Q4.37 59.011 5.8305 59.6205Q7.2909999999999995 60.23 8.97 60.23Q10.741 60.23 11.937 59.793Q13.133 59.356 14.145 58.459V55.883Q13.593 56.596000000000004 12.811 57.1365Q12.029 57.677 11.0745 57.976Q10.12 58.275 8.97 58.275Q7.383 58.275 6.026 57.47Q4.669 56.665 3.8294999999999995 55.239000000000004Q2.9899999999999998 53.813 2.9899999999999998 51.95Z M34.884800000000006 45.74H39.024800000000006V60.0H40.97980000000001V45.74H45.11980000000001V43.9H34.884800000000006Z M67.23960000000001 51.95Q67.23960000000001 50.133 68.03310000000002 48.707Q68.82660000000001 47.281 70.20660000000001 46.453Q71.58660000000002 45.625 73.33460000000001 45.625Q75.10560000000001 45.625 76.47410000000002 46.453Q77.84260000000002 47.281 78.63610000000003 48.707Q79.42960000000002 50.133 79.42960000000002 51.95Q79.42960000000002 53.767 78.63610000000003 55.193Q77.84260000000002 56.619 76.47410000000002 57.447Q75.10560000000001 58.275 73.33460000000001 58.275Q71.58660000000002 58.275 70.20660000000001 57.447Q68.82660000000001 56.619 68.03310000000002 55.193Q67.23960000000001 53.767 67.23960000000001 51.95ZM65.16960000000002 51.95Q65.16960000000002 53.698 65.77910000000001 55.216Q66.38860000000001 56.734 67.49260000000001 57.849500000000006Q68.59660000000001 58.965 70.09160000000001 59.5975Q71.58660000000002 60.23 73.33460000000001 60.23Q75.10560000000001 60.23 76.58910000000002 59.5975Q78.07260000000002 58.965 79.17660000000002 57.849500000000006Q80.28060000000002 56.734 80.89010000000002 55.216Q81.49960000000002 53.698 81.49960000000002 51.95Q81.49960000000002 50.179 80.89010000000002 48.6725Q80.28060000000002 47.166 79.17660000000002 46.0505Q78.07260000000002 44.935 76.58910000000002 44.3025Q75.10560000000001 43.67 73.33460000000001 43.67Q71.58660000000002 43.67 70.09160000000001 44.3025Q68.59660000000001 44.935 67.49260000000001 46.0505Q66.38860000000001 47.166 65.77910000000001 48.6725Q65.16960000000002 50.179 65.16960000000002 51.95Z M105.39040000000001 49.121 110.63440000000001 58.505 115.87840000000001 49.121 117.07440000000001 60.0H119.02940000000001L117.07440000000001 43.095L110.63440000000001 54.756L104.19440000000002 43.095L102.23940000000002 60.0H104.19440000000002Z M142.23020000000002 55.17H150.74020000000002L150.05020000000002 53.33H142.92020000000002ZM146.43920000000003 47.534 149.19920000000002 54.02 149.38320000000002 54.480000000000004 151.72920000000002 60.0H153.91420000000002L146.43920000000003 43.095L138.96420000000003 60.0H141.14920000000004L143.54120000000003 54.342L143.72520000000003 53.928Z M173.15900000000002 45.74H177.29900000000004V60.0H179.25400000000002V45.74H183.39400000000003V43.9H173.15900000000002Z M205.51380000000006 51.95Q205.51380000000006 50.133 206.30730000000005 48.707Q207.10080000000005 47.281 208.48080000000004 46.453Q209.86080000000004 45.625 211.60880000000006 45.625Q213.37980000000005 45.625 214.74830000000003 46.453Q216.11680000000004 47.281 216.91030000000006 48.707Q217.70380000000006 50.133 217.70380000000006 51.95Q217.70380000000006 53.767 216.91030000000006 55.193Q216.11680000000004 56.619 214.74830000000003 57.447Q213.37980000000005 58.275 211.60880000000006 58.275Q209.86080000000004 58.275 208.48080000000004 57.447Q207.10080000000005 56.619 206.30730000000005 55.193Q205.51380000000006 53.767 205.51380000000006 51.95ZM203.44380000000004 51.95Q203.44380000000004 53.698 204.05330000000004 55.216Q204.66280000000006 56.734 205.76680000000005 57.849500000000006Q206.87080000000006 58.965 208.36580000000004 59.5975Q209.86080000000004 60.23 211.60880000000006 60.23Q213.37980000000005 60.23 214.86330000000004 59.5975Q216.34680000000006 58.965 217.45080000000007 57.849500000000006Q218.55480000000006 56.734 219.16430000000005 55.216Q219.77380000000005 53.698 219.77380000000005 51.95Q219.77380000000005 50.179 219.16430000000005 48.6725Q218.55480000000006 47.166 217.45080000000007 46.0505Q216.34680000000006 44.935 214.86330000000004 44.3025Q213.37980000000005 43.67 211.60880000000006 43.67Q209.86080000000004 43.67 208.36580000000004 44.3025Q206.87080000000006 44.935 205.76680000000005 46.0505Q204.66280000000006 47.166 204.05330000000004 48.6725Q203.44380000000004 50.179 203.44380000000004 51.95Z M252.88760000000005 43.9H241.96260000000004V54.02Q241.96260000000004 54.94 241.82460000000003 55.721999999999994Q241.68660000000003 56.504 241.41060000000004 57.0905Q241.13460000000003 57.677 240.74360000000001 57.998999999999995Q240.35260000000002 58.321 239.82360000000003 58.321V60.0Q241.13460000000003 60.0 242.02010000000004 59.241Q242.90560000000005 58.482 243.35410000000005 57.217Q243.80260000000004 55.952 243.80260000000004 54.480000000000004V45.74H250.93260000000004V60.0H252.88760000000005Z M276.61740000000003 51.95Q276.61740000000003 50.133 277.4109 48.707Q278.2044 47.281 279.5844 46.453Q280.9644 45.625 282.7124 45.625Q284.4834 45.625 285.8519 46.453Q287.22040000000004 47.281 288.01390000000004 48.707Q288.80740000000003 50.133 288.80740000000003 51.95Q288.80740000000003 53.767 288.01390000000004 55.193Q287.22040000000004 56.619 285.8519 57.447Q284.4834 58.275 282.7124 58.275Q280.9644 58.275 279.5844 57.447Q278.2044 56.619 277.4109 55.193Q276.61740000000003 53.767 276.61740000000003 51.95ZM274.54740000000004 51.95Q274.54740000000004 53.698 275.15690000000006 55.216Q275.76640000000003 56.734 276.8704 57.849500000000006Q277.9744 58.965 279.4694 59.5975Q280.9644 60.23 282.7124 60.23Q284.4834 60.23 285.9669 59.5975Q287.4504 58.965 288.5544 57.849500000000006Q289.65840000000003 56.734 290.26790000000005 55.216Q290.8774 53.698 290.8774 51.95Q290.8774 50.179 290.26790000000005 48.6725Q289.65840000000003 47.166 288.5544 46.0505Q287.4504 44.935 285.9669 44.3025Q284.4834 43.67 282.7124 43.67Q280.9644 43.67 279.4694 44.3025Q277.9744 44.935 276.8704 46.0505Q275.76640000000003 47.166 275.15690000000006 48.6725Q274.54740000000004 50.179 274.54740000000004 51.95Z M312.5372 43.9V60.0H314.4922V45.74H320.4722V43.9Z M355.47200000000004 46.085 355.58700000000005 43.095 341.557 57.815 341.442 60.805ZM343.39700000000005 43.9H341.442V60.805L343.39700000000005 58.275ZM355.58700000000005 43.095 353.632 45.625V60.0H355.58700000000005Z M384.49180000000007 52.065H382.30680000000007L376.55680000000007 60.0H378.97180000000003ZM387.36680000000007 43.9H385.4118V60.0H387.36680000000007ZM386.28580000000005 45.625V43.9H382.99680000000006Q381.45580000000007 43.9 380.21380000000005 44.4865Q378.97180000000003 45.073 378.24730000000005 46.153999999999996Q377.5228000000001 47.235 377.5228000000001 48.730000000000004Q377.5228000000001 50.202 378.24730000000005 51.2945Q378.97180000000003 52.387 380.21380000000005 52.9735Q381.45580000000007 53.56 382.99680000000006 53.56H386.28580000000005V51.835H382.99680000000006Q381.96180000000004 51.835 381.16830000000004 51.467Q380.37480000000005 51.099000000000004 379.9263000000001 50.409000000000006Q379.47780000000006 49.719 379.47780000000006 48.730000000000004Q379.47780000000006 47.741 379.9263000000001 47.051Q380.37480000000005 46.361000000000004 381.16830000000004 45.993Q381.96180000000004 45.625 382.99680000000006 45.625Z M436.9424000000001 52.87H446.67140000000006V51.03H436.9424000000001ZM446.67140000000006 51.95Q446.67140000000006 53.813 445.8434000000001 55.239000000000004Q445.01540000000006 56.665 443.6469000000001 57.47Q442.2784000000001 58.275 440.6914000000001 58.275Q439.5644000000001 58.275 438.5984000000001 57.976Q437.6324000000001 57.677 436.8619000000001 57.1365Q436.0914000000001 56.596000000000004 435.5164000000001 55.883V58.459Q436.5284000000001 59.356 437.7359000000001 59.793Q438.94340000000005 60.23 440.6914000000001 60.23Q442.3704000000001 60.23 443.83090000000004 59.6205Q445.29140000000007 59.011 446.3954000000001 57.8955Q447.4994000000001 56.78 448.1204000000001 55.262Q448.74140000000006 53.744 448.74140000000006 51.95Q448.74140000000006 50.156 448.1204000000001 48.638000000000005Q447.4994000000001 47.120000000000005 446.3954000000001 46.00450000000001Q445.29140000000007 44.889 443.83090000000004 44.2795Q442.3704000000001 43.67 440.6914000000001 43.67Q438.94340000000005 43.67 437.7359000000001 44.107Q436.5284000000001 44.544 435.5164000000001 45.441V48.016999999999996Q436.0914000000001 47.304 436.8619000000001 46.7635Q437.6324000000001 46.223 438.5984000000001 45.924Q439.5644000000001 45.625 440.6914000000001 45.625Q442.2784000000001 45.625 443.6469000000001 46.43Q445.01540000000006 47.235 445.8434000000001 48.6495Q446.67140000000006 50.064 446.67140000000006 51.95Z M471.5512000000001 51.95Q471.5512000000001 50.064 472.3907000000001 48.6495Q473.2302000000001 47.235 474.58720000000005 46.43Q475.9442000000001 45.625 477.5312000000001 45.625Q478.6812000000001 45.625 479.6357000000001 45.924Q480.5902000000001 46.223 481.37220000000013 46.7635Q482.1542000000001 47.304 482.7062000000001 48.016999999999996V45.441Q481.6942000000001 44.544 480.4982000000001 44.107Q479.3022000000001 43.67 477.5312000000001 43.67Q475.8522000000001 43.67 474.3917000000001 44.2795Q472.9312000000001 44.889 471.82720000000006 46.00450000000001Q470.7232000000001 47.120000000000005 470.1022000000001 48.638000000000005Q469.4812000000001 50.156 469.4812000000001 51.95Q469.4812000000001 53.744 470.1022000000001 55.262Q470.7232000000001 56.78 471.82720000000006 57.8955Q472.9312000000001 59.011 474.3917000000001 59.6205Q475.8522000000001 60.23 477.5312000000001 60.23Q479.3022000000001 60.23 480.4982000000001 59.793Q481.6942000000001 59.356 482.7062000000001 58.459V55.883Q482.1542000000001 56.596000000000004 481.37220000000013 57.1365Q480.5902000000001 57.677 479.6357000000001 57.976Q478.6812000000001 58.275 477.5312000000001 58.275Q475.9442000000001 58.275 474.58720000000005 57.47Q473.2302000000001 56.665 472.3907000000001 55.239000000000004Q471.5512000000001 53.813 471.5512000000001 51.95Z M503.44600000000014 45.74H507.5860000000001V60.0H509.5410000000001V45.74H513.6810000000002V43.9H503.44600000000014Z M535.7318000000001 60.0H543.8508V58.16H535.7318000000001ZM535.7318000000001 45.74H543.8508V43.9H535.7318000000001ZM535.7318000000001 52.18H543.3908000000001V50.34H535.7318000000001ZM534.6508000000001 43.9V60.0H536.6058V43.9Z M564.5906000000001 45.74H568.7306000000001V60.0H570.6856000000001V45.74H574.8256000000001V43.9H564.5906000000001Z M609.8254000000001 46.085 609.9404000000001 43.095 595.9104000000001 57.815 595.7954000000001 60.805ZM597.7504 43.9H595.7954000000001V60.805L597.7504 58.275ZM609.9404000000001 43.095 607.9854 45.625V60.0H609.9404000000001Z M632.5202 43.9V60.0H634.4752V43.9ZM640.8002 43.9 633.8772 51.49 641.1452 60.0H643.5602L636.2462 51.444L643.2152 43.9Z M678.445 46.085 678.5600000000001 43.095 664.5300000000001 57.815 664.4150000000001 60.805ZM666.37 43.9H664.4150000000001V60.805L666.37 58.275ZM678.5600000000001 43.095 676.605 45.625V60.0H678.5600000000001Z"/><line x1="48.2" y1="-150" x2="67" y2="-185.3" stroke="currentColor" stroke-width="8"/><line x1="622.8" y1="-150" x2="641.6" y2="-185.3" stroke="currentColor" stroke-width="8"/></g></defs></svg>
@@ -786,18 +796,24 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
     <div class="bs-panel paper" data-s="1">
       <img loading="lazy" decoding="async" class="bs-ph a" src="assets/cabinet-reeded.jpg" alt="Кабинет ÉSTÉ">
       <img loading="lazy" decoding="async" class="bs-ph b" src="assets/cabinet-wide.jpg" alt="Кабинет ÉSTÉ">
-      <img loading="lazy" decoding="async" class="bs-ph c" src="assets/reception-wide.jpg" alt="Ресепшен ÉSTÉ" loading="lazy">
-      <img loading="lazy" decoding="async" class="bs-ph d" src="assets/cabinet-marble.jpg" alt="Кабинет ÉSTÉ" loading="lazy">
       <div class="bs-state s1" aria-hidden="true"><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg></div>
       <div class="bs-state s2">
+        <img loading="lazy" decoding="async" class="bs-mph t" src="assets/cabinet-reeded.jpg" alt="" aria-hidden="true">
+        <div class="bs-mid">
         <p class="cap">Стоматология эстетики в Москве</p>
         <svg class="logo" viewBox="13 -192 657 197" role="img" aria-label="ÉSTÉ"><use href="#este-word"/></svg>
         <p class="txt">Мы относимся к эстетике как к искусству. Оттенок, форму и игру света на эмали врач подбирает под ваше лицо, а здоровье зубов остаётся основой, на которой держится красота</p>
+        </div>
+        <img loading="lazy" decoding="async" class="bs-mph b" src="assets/cabinet-wide.jpg" alt="" aria-hidden="true">
       </div>
       <div class="bs-state s3">
+        <img loading="lazy" decoding="async" class="bs-mph t" src="assets/reception-wide.jpg" alt="Ресепшен ÉSTÉ" loading="lazy">
+        <div class="bs-mid">
         <p class="cap">ÉSTÉ</p>
         <p class="slogan">Там, где медицина становится искусством</p>
         <p class="txt">Мы врачи, художники и реставраторы, которые подходят к делу с улыбкой</p>
+        </div>
+        <img loading="lazy" decoding="async" class="bs-mph b" src="assets/cabinet-marble.jpg" alt="Кабинет ÉSTÉ" loading="lazy">
       </div>
     </div>
   </div>
@@ -834,7 +850,8 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
 <a class="u0-r" href="#kontakty" data-page="/detskaya/" data-i="5"><span class="u0-n">10</span><h3>Детская стоматология</h3><small>Лечение молочных зубов и герметизация фиссур</small><b>от 7 000 ₽</b><span class="u0-x" aria-hidden="true"><i class="u0-ln"></i><span class="u0-more">Подробнее</span><span class="u0-th"><img loading="lazy" decoding="async" src="assets/u-deti.jpg" alt="" loading="lazy"></span></span></a>
 <div class="u0-pv" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/u-restavr.jpg" alt="" loading="lazy"><img loading="lazy" decoding="async" src="assets/u-gigiena.jpg" alt="" loading="lazy"><img loading="lazy" decoding="async" src="assets/u-otbel.jpg" alt="" loading="lazy"><img loading="lazy" decoding="async" src="assets/u-diagn.jpg" alt="" loading="lazy"><img loading="lazy" decoding="async" src="assets/u-vnchs.jpg" alt="" loading="lazy"><img loading="lazy" decoding="async" src="assets/u-deti.jpg" alt="" loading="lazy"></div>
 </div>
-<div class="u0-m"><a class="u0-mc w" href="#kontakty" data-page="/viniry/"><img loading="lazy" decoding="async" src="assets/u-viniry.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Виниры</h3><b>от 72 000 ₽</b></span></a><a class="u0-mc" href="#kontakty" data-page="/koronki/"><img loading="lazy" decoding="async" src="assets/u-koronki.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Коронки и вкладки</h3><b>от 58 000 ₽</b></span></a><a class="u0-mc" href="#kontakty" data-page="/ortodontiya/"><img loading="lazy" decoding="async" src="assets/u-orto.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Брекеты и элайнеры</h3><b>по плану</b></span></a><a class="u0-mc" href="#kontakty" data-page="/lechenie-kanalov/"><img loading="lazy" decoding="async" src="assets/u-kanaly.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Лечение каналов под микроскопом</h3><b>от 20 000 ₽</b></span></a><a class="u0-mc" href="#kontakty" data-page="/restavraciya/"><img loading="lazy" decoding="async" src="assets/u-restavr.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Художественная реставрация</h3><b>от 12 000 ₽</b></span></a><a class="u0-mc" href="#kontakty" data-page="/gigiena/"><img loading="lazy" decoding="async" src="assets/u-gigiena.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Профессиональная гигиена</h3><b>от 15 000 ₽</b></span></a><a class="u0-mc" href="#kontakty" data-page="/otbelivanie/"><img loading="lazy" decoding="async" src="assets/u-otbel.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Отбеливание</h3><b>от 33 000 ₽</b></span></a><a class="u0-mc" href="#kontakty" data-page="/diagnostika/"><img loading="lazy" decoding="async" src="assets/u-diagn.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Диагностика: КТ и 3D-скан</h3><b>от 750 ₽</b></span></a><a class="u0-mc" href="#kontakty" data-page="/vnchs/"><img loading="lazy" decoding="async" src="assets/u-vnchs.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Гнатология и ВНЧС</h3><b>от 110 000 ₽</b></span></a><a class="u0-mc w" href="#kontakty" data-page="/detskaya/"><img loading="lazy" decoding="async" src="assets/u-deti.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Детская стоматология</h3><b>от 7 000 ₽</b></span></a></div>
+<div class="u0-m"><a class="u0-mc w" href="#kontakty" data-page="/viniry/"><img loading="lazy" decoding="async" src="assets/u-viniry.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Виниры</h3><b>от 72 000 ₽</b></span></a><a class="u0-mc" href="#kontakty" data-page="/ortodontiya/"><img loading="lazy" decoding="async" src="assets/u-orto.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Брекеты и элайнеры</h3><b>по плану</b></span></a><a class="u0-mc" href="#kontakty" data-page="/lechenie-kanalov/"><img loading="lazy" decoding="async" src="assets/u-kanaly.jpg" alt="" loading="lazy"><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i><span><h3>Лечение каналов под микроскопом</h3><b>от 20 000 ₽</b></span></a></div>
+<div class="u0-ml"><a class="u0-mi" href="#kontakty" data-page="/koronki/"><span><h3>Коронки и вкладки</h3><small>Цирконий и E.max на зуб и на имплант</small><b>от 58 000 ₽</b></span><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i></a><a class="u0-mi" href="#kontakty" data-page="/restavraciya/"><span><h3>Художественная реставрация</h3><small>Лечение кариеса и восстановление формы зуба</small><b>от 12 000 ₽</b></span><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i></a><a class="u0-mi" href="#kontakty" data-page="/gigiena/"><span><h3>Профессиональная гигиена</h3><small>Чистка от налёта и камня, полировка, советы по уходу</small><b>от 15 000 ₽</b></span><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i></a><a class="u0-mi" href="#kontakty" data-page="/otbelivanie/"><span><h3>Отбеливание</h3><small>Philips Zoom 4, Dr. White и домашние каппы</small><b>от 33 000 ₽</b></span><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i></a><a class="u0-mi" href="#kontakty" data-page="/diagnostika/"><span><h3>Диагностика: КТ и 3D-скан</h3><small>Снимки, томография и цифровой слепок в день визита</small><b>от 750 ₽</b></span><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i></a><a class="u0-mi" href="#kontakty" data-page="/vnchs/"><span><h3>Гнатология и ВНЧС</h3><small>Сплинт-терапия при щелчках, боли и стирании зубов</small><b>от 110 000 ₽</b></span><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i></a><a class="u0-mi" href="#kontakty" data-page="/detskaya/"><span><h3>Детская стоматология</h3><small>Лечение молочных зубов и герметизация фиссур</small><b>от 7 000 ₽</b></span><i class="u0-mr" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3.5 10.5l7-7M5 3.5h5.5V9"/></svg></i></a></div>
 <a class="pill cream u0-mz" href="#kontakty"><span>Записаться на консультацию</span><i><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></i></a>
 </div></section>
 
@@ -842,9 +859,9 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
 <div class="tE">
   <div class="tE-h"><h2 class="h2">Команда ÉSTÉ</h2></div>
   <div class="tE-row" data-stack>
-    <article style="--i:1;--a:-4.5deg;--y:clamp(10px,2cqi,40px);--sx:-50%;--sr:-4deg"><svg class="tE-s" viewBox="0 0 300 160" aria-hidden="true"><path class="o" d="M150 156 C 146 120, 96 118, 58 98 C 14 76, 30 26, 82 32 C 130 38, 150 96, 150 156"/><path class="i" d="M150 156 C 146 120, 96 118, 58 98 C 14 76, 30 26, 82 32 C 130 38, 150 96, 150 156"/></svg><i class="tE-clip"></i><div class="tE-b paper"><header><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg><span>врач</span></header><figure data-ph="Портрет сгенерирован по фото врача. До запуска заменить съёмкой"><img loading="lazy" decoding="async" src="assets/tiunova-coat.jpg" alt="Тиунова Валерия Андреевна"></figure><h3>Валерия<br>Тиунова<small>Валерия Андреевна</small></h3><footer><em>ортодонт</em><span class="tag o">с 2019 года</span></footer></div></article>
-    <article class="c" style="--i:0;--a:3deg;--y:0px;--sx:-50%;--sr:5deg"><svg class="tE-s" viewBox="0 0 300 160" aria-hidden="true"><path class="o" d="M150 156 C 154 116, 206 112, 244 90 C 288 64, 268 18, 218 26 C 172 34, 150 98, 150 156"/><path class="i" d="M150 156 C 154 116, 206 112, 244 90 C 288 64, 268 18, 218 26 C 172 34, 150 98, 150 156"/></svg><i class="tE-clip"></i><div class="tE-b tint"><header><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg><span>врач</span></header><figure data-ph="Портрет сгенерирован по фото врача. До запуска заменить съёмкой"><img loading="lazy" decoding="async" src="assets/kurya-coat.jpg" alt="Куря Ольга Аркадьевна"></figure><h3>Ольга<br>Куря<small>Ольга Аркадьевна, главный врач</small></h3><footer><em>ортопед</em><span class="tag o">с 2014 года</span></footer></div></article>
-    <article style="--i:2;--a:-2deg;--y:clamp(18px,3.2cqi,60px);--sx:-50%;--sr:-2deg"><svg class="tE-s" viewBox="0 0 300 160" aria-hidden="true"><path class="o" d="M150 156 C 150 128, 190 132, 236 118 C 290 100, 290 52, 246 50 C 196 48, 152 100, 150 156"/><path class="i" d="M150 156 C 150 128, 190 132, 236 118 C 290 100, 290 52, 246 50 C 196 48, 152 100, 150 156"/></svg><i class="tE-clip"></i><div class="tE-b paper"><header><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg><span>врач</span></header><figure data-ph="Портрет сгенерирован по фото врача. До запуска заменить съёмкой"><img loading="lazy" decoding="async" src="assets/saitgareeva-coat.jpg" alt="Саитгареева Алия Зуфаровна"></figure><h3>Алия<br>Саитгареева<small>Алия Зуфаровна</small></h3><footer><em>терапевт</em><span class="tag o">с 2019 года</span></footer></div></article>
+    <article style="--i:0;--a:-4.5deg;--y:clamp(10px,2cqi,40px);--sx:-50%;--sr:-4deg"><svg class="tE-s" viewBox="0 0 300 160" aria-hidden="true"><path class="o" d="M150 156 C 146 120, 96 118, 58 98 C 14 76, 30 26, 82 32 C 130 38, 150 96, 150 156"/><path class="i" d="M150 156 C 146 120, 96 118, 58 98 C 14 76, 30 26, 82 32 C 130 38, 150 96, 150 156"/></svg><i class="tE-clip"></i><div class="tE-b paper"><header><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg><span>врач</span></header><figure data-ph="Портрет сгенерирован по фото врача. До запуска заменить съёмкой"><img loading="lazy" decoding="async" src="assets/tiunova-coat.jpg" alt="Тиунова Валерия Андреевна"></figure><h3>Валерия<br>Тиунова<small>Валерия Андреевна</small></h3><footer><em>ортодонт</em><span class="tag o">с 2019 года</span></footer></div></article>
+    <article class="c" style="--i:2;--a:3deg;--y:0px;--sx:-50%;--sr:5deg"><svg class="tE-s" viewBox="0 0 300 160" aria-hidden="true"><path class="o" d="M150 156 C 154 116, 206 112, 244 90 C 288 64, 268 18, 218 26 C 172 34, 150 98, 150 156"/><path class="i" d="M150 156 C 154 116, 206 112, 244 90 C 288 64, 268 18, 218 26 C 172 34, 150 98, 150 156"/></svg><i class="tE-clip"></i><div class="tE-b tint"><header><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg><span>врач</span></header><figure data-ph="Портрет сгенерирован по фото врача. До запуска заменить съёмкой"><img loading="lazy" decoding="async" src="assets/kurya-coat.jpg" alt="Куря Ольга Аркадьевна"></figure><h3>Ольга<br>Куря<small>Ольга Аркадьевна, главный врач</small></h3><footer><em>ортопед</em><span class="tag o">с 2014 года</span></footer></div></article>
+    <article style="--i:1;--a:-2deg;--y:clamp(18px,3.2cqi,60px);--sx:-50%;--sr:-2deg"><svg class="tE-s" viewBox="0 0 300 160" aria-hidden="true"><path class="o" d="M150 156 C 150 128, 190 132, 236 118 C 290 100, 290 52, 246 50 C 196 48, 152 100, 150 156"/><path class="i" d="M150 156 C 150 128, 190 132, 236 118 C 290 100, 290 52, 246 50 C 196 48, 152 100, 150 156"/></svg><i class="tE-clip"></i><div class="tE-b paper"><header><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg><span>врач</span></header><figure data-ph="Портрет сгенерирован по фото врача. До запуска заменить съёмкой"><img loading="lazy" decoding="async" src="assets/saitgareeva-coat.jpg" alt="Саитгареева Алия Зуфаровна"></figure><h3>Алия<br>Саитгареева<small>Алия Зуфаровна</small></h3><footer><em>терапевт</em><span class="tag o">с 2019 года</span></footer></div></article>
   </div>
 </div>
 </div></section>
@@ -1123,7 +1140,7 @@ html.mv-E .vsw{bottom:calc(env(safe-area-inset-bottom,0px) + 22px)}
 /* старый переключатель заглушек и прежнее окно меню уходят в панель вариантов */
 .ui .phsw{display:none}
 @media (max-width:820px){.vsw{left:max(16px,env(safe-area-inset-left,0px));transform:none}.vsw-b{height:40px;padding:0 14px;font-size:12.5px}.vsw-p{left:0;transform:none;bottom:50px;width:calc(100vw - 32px)}}
-html.mn-open .vsw{display:none}
+html.mn-open .vsw,html.demo .vsw{display:none}
 @media (max-width:820px){html.mv-E .h-top .h-menu{display:none}}
 </style>
 
@@ -1176,7 +1193,12 @@ D:['Миниатюра','Маленький кадр услуги в арке, �
 E:['Номер и фото','Слева номер раздела 05–10, при наведении рядом с курсором всплывает кадр услуги. На телефоне номер, название и цена.']};
 function get(k,def){try{return localStorage.getItem('este-'+k)||def}catch(e){return def}}
 function put(k,v){try{localStorage.setItem('este-'+k,v)}catch(e){}}
-var mv=get('mv','A'),uv=get('uv','D');if(!MV[mv])mv='A';if(!UV[uv])uv='D';
+/* показ клиенту: панель вариантов скрыта, меню A и услуги D закреплены; #varianty в адресе включает панель, #pokaz снова прячет */
+if(location.hash=='#varianty')put('dev','1');if(location.hash=='#pokaz')put('dev','');
+var DEV=get('dev','')=='1';
+var mv=DEV?get('mv','A'):'A',uv=DEV?get('uv','D'):'D';if(!MV[mv])mv='A';if(!UV[uv])uv='D';
+if(!DEV)root.classList.add('demo');
+addEventListener('hashchange',function(){if(location.hash=='#varianty'||location.hash=='#pokaz'){put('dev',location.hash=='#varianty'?'1':'');location.reload()}});
 var navSv=d.querySelector('.h-nav a[href="#uslugi"]'),fix=d.getElementById('menu-fix');
 function cls(p,v){root.className=root.className.replace(new RegExp('\\b'+p+'-[A-E]\\b','g'),'').trim();root.classList.add(p+'-'+v)}
 function renderMenu(){
@@ -1219,6 +1241,14 @@ renderMenu();renderU();
 
 
 <script>
+(function(){
+  /* видео: muted свойством, запуск сразу, повтор при любом касании, прокрутке и возврате на вкладку */
+  var vs=[].slice.call(document.querySelectorAll('video[autoplay]'));
+  function kick(){vs.forEach(function(v){v.muted=true;v.defaultMuted=true;if(v.paused){var p=v.play();if(p&&p.catch)p.catch(function(){})}})}
+  vs.forEach(function(v){v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('webkit-playsinline','');v.setAttribute('disablepictureinpicture','');v.addEventListener('canplay',kick,{once:true})});
+  kick();['touchstart','touchend','click','scroll','keydown'].forEach(function(e){addEventListener(e,kick,{passive:true})});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)kick()});
+})();
 (function(){
   var d=document, root=d.documentElement;
   var $=function(s,c){return (c||d).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))};
@@ -1303,7 +1333,18 @@ renderMenu();renderU();
   });
 })();
 (function(){var bss=document.querySelectorAll('.bs'),tk=false;
-function upd(){tk=false;bss.forEach(function(sec){var r=sec.getBoundingClientRect();if(!r.height)return;var total=r.height-innerHeight;var p=total>0?Math.min(1,Math.max(0,(-r.top+innerHeight*.35)/(total+innerHeight*.35))):1;sec.querySelector('.bs-panel').setAttribute('data-s',p<.3?1:p<.64?2:3)})}
+function cl(x){return x<0?0:x>1?1:x}function sm(x){x=cl(x);return x*x*(3-2*x)}
+var B1=.31,B2=.65,W=.075;
+function upd(){tk=false;bss.forEach(function(sec){var r=sec.getBoundingClientRect();if(!r.height)return;var total=r.height-innerHeight;
+  var p=total>0?cl((-r.top+innerHeight*.35)/(total+innerHeight*.35)):1,pn=sec.querySelector('.bs-panel'),st=pn.querySelectorAll('.bs-state');
+  pn.setAttribute('data-s',p<B1?1:p<B2?2:3);
+  if(sec.clientWidth>760){st.forEach(function(e){e.style.opacity=e.style.transform=e.style.pointerEvents=''});return}
+  /* уходящее состояние гаснет за W до границы, следующее проявляется за W после: двух текстов одновременно не бывает */
+  var o=[1-sm((p-(B1-W))/W), sm((p-B1)/W)*(1-sm((p-(B2-W))/W)), sm((p-B2)/W)],
+      dir=[p>=B1-W?-1:1, p<B1+W?1:-1, 1];
+  st.forEach(function(e,i){var v=o[i];e.style.opacity=v.toFixed(3);e.style.transform='translate3d(0,'+((1-v)*26*dir[i]).toFixed(1)+'px,0) scale('+(.985+.015*v).toFixed(4)+')';e.style.pointerEvents=v>.5?'auto':'none';
+    var lo=i==1?(p-B1)/(B2-B1):i==2?(p-B2)/(1-B2):0;lo=cl(lo);
+    e.querySelectorAll('.bs-mph').forEach(function(m){var k=m.classList.contains('t')?1:-1;m.style.transform='translate3d(0,'+((lo-.5)*-14*k).toFixed(1)+'px,0)'})})})}
 addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd();})();
 (function(){document.querySelectorAll('.u0-l').forEach(function(l){var pv=l.querySelector('.u0-pv');if(!pv)return;var ims=pv.querySelectorAll('img');
 l.addEventListener('mousemove',function(e){if(!document.documentElement.classList.contains('uv-E'))return;var r=e.target.closest('.u0-r');if(!r){pv.classList.remove('on');return}var b=l.getBoundingClientRect(),i=+r.dataset.i;ims.forEach(function(m,j){m.classList.toggle('on',j===i)});pv.classList.add('on');pv.style.left=(e.clientX-b.left+150)+'px';pv.style.top=(e.clientY-b.top)+'px'});
@@ -1327,15 +1368,25 @@ l.addEventListener('mouseleave',function(){pv.classList.remove('on')})});})();
 m.forEach(function(x){var t=x.firstElementChild,c=t.cloneNode(true),tm=0;c.setAttribute('aria-hidden','true');x.appendChild(c);
   x.addEventListener('touchstart',function(){clearTimeout(tm);x.classList.add('hold')},{passive:true});
   x.addEventListener('touchend',function(){clearTimeout(tm);tm=setTimeout(function(){x.classList.remove('hold')},4000)},{passive:true})});
-var sec=m[0].closest('section')||m[0].parentNode,q=0;
-function mv(){q=0;var ph=m[0].clientWidth<=760&&innerWidth<=820;
-  m.forEach(function(x,i){var ds=x.children;
-    if(!ph){for(var k=0;k<ds.length;k++)ds[k].style.removeProperty('--x');return}
-    var r=sec.getBoundingClientRect(),h=innerHeight,rg=h+r.height,t=(h-r.top)/rg;t=t<0?0:t>1?1:t;
-    var w=ds[0].scrollWidth,tr=Math.max(0,Math.min(w-x.clientWidth*.6,rg*.55)),v=x.classList.contains('rev')?-(1-t)*tr:-t*tr;
-    for(var k=0;k<ds.length;k++)ds[k].style.setProperty('--x',v.toFixed(1)+'px')})}
-function rq(){if(!q){q=1;requestAnimationFrame(mv)}}
-addEventListener('scroll',rq,{passive:true});addEventListener('resize',rq);mv();})();
+/* телефон: карточки сами перелистываются по одной, ряды по очереди; палец листает вручную, автолистание продолжается через 5 секунд */
+var ph=function(){return m[0].clientWidth<=760&&innerWidth<=820};
+m.forEach(function(x,ri){var ds=[].slice.call(x.children),rev=x.classList.contains('rev'),n=ds[0].children.length,arts=[],i=0,tm=0,vis=false,hold=0,sx=0,sy=0,dx=0,drag=false,lock=0;
+  function all(){arts=[];ds.forEach(function(d){arts=arts.concat([].slice.call(d.children))})}
+  function off(k){return arts[k].offsetLeft-arts[0].offsetLeft}
+  function set(v,anim){ds.forEach(function(d){d.style.transition=anim?'transform .95s cubic-bezier(.65,0,.25,1)':'none';d.style.transform='translate3d('+v+'px,0,0)'})}
+  function go(k,anim){all();i=k;set(-off(i),anim)}
+  function norm(){if(i>=n){go(i-n,false)}else if(i<0){go(i+n,false)}}
+  function step(){if(!ph()||!vis||hold||document.hidden)return;norm();go(rev?i-1<0?(go(n,false),n-1):i-1:i+1,true)}
+  function loop(){clearInterval(tm);tm=setInterval(step,4200)}
+  ds[0].addEventListener('transitionend',norm);
+  if(rev)setTimeout(function(){if(ph())go(n,false)},0);
+  setTimeout(loop,ri*2100);
+  new IntersectionObserver(function(e){vis=e[0].isIntersecting},{threshold:.35}).observe(x);
+  x.addEventListener('touchstart',function(e){if(!ph())return;hold=1;clearTimeout(lock);clearInterval(tm);all();if(i<n/2)go(i+n,false);else if(i>=n+n/2)go(i-n,false);sx=e.touches[0].clientX;sy=e.touches[0].clientY;dx=0;drag=null},{passive:true});
+  x.addEventListener('touchmove',function(e){if(!ph())return;var mx=e.touches[0].clientX-sx,my=e.touches[0].clientY-sy;if(drag===null)drag=Math.abs(mx)>Math.abs(my)+4;if(!drag)return;e.preventDefault();dx=mx;set(-off(i)+dx,false)},{passive:false});
+  x.addEventListener('touchend',function(){if(!ph())return;if(drag){var k=dx<-40?i+1:dx>40?i-1:i;go(Math.max(0,Math.min(2*n-1,k)),true)}lock=setTimeout(function(){hold=0;loop()},5000)},{passive:true});
+  addEventListener('resize',function(){if(ph())go(i,false);else ds.forEach(function(d){d.style.transition=d.style.transform=''})});
+});})();
 (function(){var R=window.__mk.reduce;
 document.querySelectorAll('.v15b').forEach(function(a){var vp=a.querySelector('.v15b-vp'),tr=a.querySelector('.v15b-tr'),cs=a.querySelectorAll('.v15b-c'),i=0,t0=performance.now(),D=3000,seen=false,first=true;
   cs.forEach(function(c){var pr=document.createElement('div');pr.className='v15b-pr';for(var k=0;k<cs.length;k++)pr.appendChild(document.createElement('i'));var w=document.createElement('span');w.className='v15b-who';w.innerHTML='<b><svg class="logo" viewBox="13 -192 657 197" aria-hidden="true"><use href="#este-word"/></svg></b>ÉSTÉ';c.prepend(pr,w)});
