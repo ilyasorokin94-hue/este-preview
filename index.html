@@ -508,7 +508,6 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
 .n14d-marq{display:flex;overflow:hidden;margin-bottom:var(--gap);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
 .n14d-marq>div{flex:none;display:flex;gap:var(--gap);padding-right:var(--gap);animation:n14d 90s linear infinite}
 .n14d-marq.rev>div{animation-direction:reverse;animation-duration:80s}
-.n14d-marq:hover>div,.n14d-marq:focus-within>div{animation-play-state:paused}
 @keyframes n14d{to{transform:translateX(-100%)}}
 @media (prefers-reduced-motion:reduce){.n14d-marq{overflow-x:auto}.n14d-marq>div{animation:none}}
 .n14d-marq article{flex:none;width:clamp(250px,25cqi,400px);display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:clamp(14px,1.6cqi,26px);border-radius:var(--r);border:1px solid var(--line)}
@@ -520,7 +519,6 @@ html.uv-E .u0-pv.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4d
 .n14d-marq article footer{font-size:12.5px;line-height:1.4;opacity:.75}
 .n14d-marq article.num{width:clamp(170px,16cqi,260px);background:var(--dark)}
 .n14d-marq article.num b{font:400 clamp(54px,6.6cqi,110px)/.8 var(--serif);font-variant-numeric:lining-nums;color:var(--glow)}
-.n14d-marq.hold>div{animation-play-state:paused}
 @container mk (max-width:700px){
   .n14d-marq{overflow:hidden;-webkit-mask-image:none;mask-image:none;margin-bottom:12px;padding-inline:var(--pad)}
   .n14d-marq>div{animation:none;padding-right:12px;gap:12px;will-change:transform}
@@ -1475,8 +1473,7 @@ l.addEventListener('mouseleave',function(){pv.classList.remove('on')})});})();
 })();})();
 (function(){var m=document.querySelectorAll('.n14d-marq');if(!m.length)return;
 m.forEach(function(x){var t=x.firstElementChild,c=t.cloneNode(true),tm=0;c.setAttribute('aria-hidden','true');x.appendChild(c);
-  x.addEventListener('touchstart',function(){clearTimeout(tm);x.classList.add('hold')},{passive:true});
-  x.addEventListener('touchend',function(){clearTimeout(tm);tm=setTimeout(function(){x.classList.remove('hold')},4000)},{passive:true})});
+});
 /* телефонные варианты: данные берём из карточек десктопа, ключевая фраза в data-hl */
 var M=document.querySelector('.n14m');if(!M)return;
 var AV={'Куря':['assets/kurya-coat.jpg','Куря О. А.','Ортопед, главный врач'],'Саитгареева':['assets/saitgareeva-coat.jpg','Саитгареева А. З.','Терапевт, эндодонтист'],'Тиунова':['assets/tiunova-coat.jpg','Тиунова В. А.','Ортодонт']};
